@@ -6,7 +6,7 @@ import { IoMdDownload } from "react-icons/io";
 // eslint-disable-next-line react/prop-types
 const CardTransaction = ({ amount }) => {
   return (
-    <div className="bg-zinc-300 w-96 flex justify-between rounded-md px-4 ">
+    <div className="bg-zinc-300 py-2  flex justify-between rounded-md px-4 ">
       <div className="flex gap-4">
         <div className="flex justify-center items-center">
           <IoMdDownload />

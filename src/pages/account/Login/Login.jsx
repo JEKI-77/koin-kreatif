@@ -19,7 +19,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col gap-8 bg-slate-300 w-[50%] justify-center items-center h-full px-20 ">
+    <div className="flex flex-col gap-8 bg-slate-300 justify-center items-center h-full px-20 ">
       <div className="text-center">Logo</div>
       {/* Input email */}
       <input
