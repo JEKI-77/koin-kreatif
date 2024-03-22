@@ -1,4 +1,4 @@
-import Navbar from "../../Atoms/navbar/Navbar";
+import Navbar from "../../Atoms/Navbar";
 
 const Header = () => {
   return (

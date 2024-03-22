@@ -4,9 +4,9 @@ import Footer from "../../components/molecules/footer/Footer";
 
 const MainApp = () => {
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-screen ">
       <Header />
-      <div className="flex-1">
+      <div className="flex-1 flex justify-center items-start">
         <Outlet />
       </div>
       <Footer />

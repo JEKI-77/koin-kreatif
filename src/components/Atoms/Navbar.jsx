@@ -23,7 +23,7 @@ const Navbar = () => {
           <Link to="/laporan">laporan</Link>
         </li>
         <li>
-          <Link to="/account">Acount</Link>
+          <Link to="/login">Login</Link>
         </li>
       </ul>
     </nav>
