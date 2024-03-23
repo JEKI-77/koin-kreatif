@@ -1,12 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Category from "../pages/categories";
-import AddTransaction from "../pages/Transaction";
+import Category from "../pages/categories/category";
+import AddTransaction from "../pages/Transaction/Transaction";
 import Laporan from "../pages/laporan";
 import Home from "../pages/home/Home";
 import MainApp from "../pages/mainApp";
 import Register from "../pages/account/Register/Register";
 import Login from "../pages/account/Login/Login";
-
+import EditTransaction from "../pages/Transaction/EditTransaction";
+import AddCategory from "../pages/categories/addcategory";
+import EditCategory from "../pages/categories/editCategory";
 function Routers() {
   return (
     <Router>
@@ -18,6 +20,9 @@ function Routers() {
           <Route path="/login" element={<Login />} />
           <Route path="/laporan" element={<Laporan />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/addcategory" element={<AddCategory />} />
+          <Route path="/editTransactions/:id" element={<EditTransaction />} />
+          <Route path="/editCategory/:id" element={<EditCategory />} />
         </Route>
       </Routes>
     </Router>

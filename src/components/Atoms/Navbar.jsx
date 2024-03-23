@@ -20,9 +20,6 @@ const Navbar = () => {
           </li>
 
           <li>
-            <Link to="/addtransaction">Transaction</Link>
-          </li>
-          <li>
             <Link to="/category">categories</Link>
           </li>
           {/* <li>
