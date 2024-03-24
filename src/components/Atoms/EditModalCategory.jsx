@@ -1,19 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Toggle from "./toggle";
-import { PostCategory } from "../../utils/category";
 import Alert from "./Alert";
+import { GetbyIdCategory, UpdateCategory } from "../../utils/category";
+import { FaEdit } from "react-icons/fa";
 
 // eslint-disable-next-line react/prop-types
-const ModalCategory = ({ title, icon }) => {
+const EditCategory = ({ title, id }) => {
   // State untuk mengontrol visibilitas ModalCategory
   const [ModalCategoryVisible, setModalCategoryVisible] = useState(false);
   // eslint-disable-next-line no-unused-vars
-  const [modalVisible, setModalVisible] = useState(false);
+  const [EditModalVisible, setEditModalVisible] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [status, setStatus] = useState("false");
   const [category, setCategory] = useState("");
   const [showMessage, setshowMessage] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
 
   // Fungsi untuk menampilkan atau menyembunyikan ModalCategory
   const toggleModalCategory = () => {
@@ -24,34 +24,43 @@ const ModalCategory = ({ title, icon }) => {
     setStatus(isChecked ? "false" : "true");
   };
 
-  const onSubmitHandler = async (e) => {
-    setModalVisible(true);
-    e.preventDefault();
+  const getById = async () => {
+    try {
+      const response = await GetbyIdCategory(id);
+      setStatus(response.data.status); // Set isChecked based on status from data
+      setCategory(response.data.category);
+    } catch (error) {
+      console.log(error);
+      //   alert("get by id gagal", error);
+    }
+  };
 
+  useEffect(() => {
+    getById();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const updateHandler = async (e) => {
+    setEditModalVisible(true);
+    e.preventDefault();
     const data = {
       category,
       status, // Menggunakan status yang sudah diperbarui
     };
 
-    if (category !== "") {
-      try {
-        await PostCategory(data);
-        setshowMessage(true);
-        setCategory("");
-        setshowMessage(true);
-        setShowAlert(true);
-        setTimeout(() => {
-          setModalVisible(false);
-          window.location.reload();
-        }, 2000);
-      } catch (error) {
-        console.log(error);
-        alert("create gagal", error);
-        // Logika untuk menangani kesalahan
-      }
-    } else {
-      setShowAlert(true);
-      showMessage(false);
+    try {
+      await UpdateCategory(id, data);
+      setshowMessage(true);
+      setCategory("");
+      setshowMessage(true);
+      setTimeout(() => {
+        setEditModalVisible(false);
+        window.location.reload();
+      }, 2000);
+    } catch (error) {
+      console.log(error);
+      alert("update gagal", error);
+      // Logika untuk menangani kesalahan
     }
   };
 
@@ -63,7 +72,7 @@ const ModalCategory = ({ title, icon }) => {
         className="block text-xl rounded-full  focus:ring-4  font-medium  px-3 py-1 text-center "
         type="button"
       >
-        {icon}
+        <FaEdit />
       </button>
 
       {/* Main ModalCategory */}
@@ -89,7 +98,6 @@ const ModalCategory = ({ title, icon }) => {
                     type="button"
                     className="text-gray-400 hover:text-gray-500 focus:outline-none focus:text-gray-500"
                   >
-                    <span className="sr-only">Close ModalCategory</span>
                     <svg
                       className="h-6 w-6"
                       xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +116,7 @@ const ModalCategory = ({ title, icon }) => {
                 </div>
                 {/* ModalCategory body */}
                 <form className="p-4 md:p-5">
-                  <div className="grid gap-4 mb-4 grid-cols-2">
+                  <div className="grid gap-4  grid-cols-2">
                     <div className="col-span-2">
                       <div className=" flex gap-4 mb-6 items-start w-[50%]">
                         <span className="text-3xl">
@@ -138,9 +146,9 @@ const ModalCategory = ({ title, icon }) => {
                   </div>
 
                   <button
-                    onClick={onSubmitHandler}
+                    onClick={updateHandler}
                     type="submit"
-                    className="text-white inline-flex items-center mt-12 mb-4
+                    className="text-white inline-flex items-center mt-8 mb-4
                      bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg justify-center w-full text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   >
                     <svg
@@ -155,17 +163,9 @@ const ModalCategory = ({ title, icon }) => {
                         clipRule="evenodd"
                       ></path>
                     </svg>
-                    Tambah
+                    Simpan
                   </button>
-                  {showAlert ? (
-                    showMessage ? (
-                      <Alert message="Success Add Transaction!" />
-                    ) : (
-                      <Alert message="Input data masih kosong!" />
-                    )
-                  ) : (
-                    ""
-                  )}
+                  {showMessage ? <Alert message="Success update!" /> : ""}
                 </form>
               </div>
             </div>
@@ -176,4 +176,4 @@ const ModalCategory = ({ title, icon }) => {
   );
 };
 
-export default ModalCategory;
+export default EditCategory;

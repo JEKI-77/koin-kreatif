@@ -8,10 +8,13 @@ import { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import Modal from "../../components/Atoms/modal";
 import { GetAllTransaction } from "../../utils/transaction";
+import { useParams } from "react-router-dom";
 // import Alert from "../../components/Atoms/Alert";
 // import { useState } from "react";
 
 const Home = () => {
+  const { params } = useParams();
+  console.log("paramse", params);
   const [data, setData] = useState([]);
   // const [showAlert, setShowAlert] = useState(false);
 

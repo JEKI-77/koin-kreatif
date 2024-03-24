@@ -3,6 +3,7 @@ import { useState } from "react";
 import Toggle from "./toggle";
 import { PostTransaction } from "../../utils/transaction";
 import Alert from "./Alert";
+import Loading from "./Loading";
 
 const Modal = () => {
   // State untuk mengontrol visibilitas modal
@@ -12,8 +13,7 @@ const Modal = () => {
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
   const [date, setDate] = useState("");
-  const [showMessage, setshowMessage] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const currentDate = new Date(); // Mengambil tanggal saat ini
   const formattedDate = currentDate.toISOString().split("T")[0];
@@ -23,39 +23,47 @@ const Modal = () => {
     setStatus(isChecked ? "false" : "true");
   };
 
-    const onSubmitHandler = async (e) => {
-        setModalVisible(true);
-        e.preventDefault();
-        const data = {
+  const onSubmitHandler = async (e) => {
+    setModalVisible(true);
+    e.preventDefault();
+
+    if (amount.trim() !== "" && category.trim() !== "") {
+      // Menggunakan trim() untuk menghapus spasi yang tidak diinginkan
+
+      const data = {
         amount,
         category,
-        status, // Menggunakan status yang sudah diperbarui
+        status,
         date: formattedDate,
-        };
+      };
 
-        if (amount !== "" || category !== "") {
-        try {
-            await PostTransaction(data);
-            setshowMessage(true);
-            setAmount("");
-            setCategory("");
-            setDate("");
-            setshowMessage(true);
-            setShowAlert(true);
-            setTimeout(() => {
+      setLoading(true);
+      try {
+        await PostTransaction(data);
+        setAmount("");
+        setCategory("");
+        setDate("");
+
+        // Tampilkan pesan sukses selama beberapa detik sebelum menutup modal dan me-refresh halaman
+        setTimeout(() => {
+          setLoading(false);
+          setTimeout(() => {
             setModalVisible(false);
             window.location.reload();
-            }, 2000);
-        } catch (error) {
-            console.log(error);
-            alert("create gagal", error);
-            // Logika untuk menangani kesalahan
-        }
-        } else {
-        setShowAlert(true);
-        showMessage(false);
-        }
-    };
+          }, 1000);
+        }, 2000);
+      } catch (error) {
+        setLoading(false);
+        setModalVisible(true);
+        console.log(error);
+        alert("create gagal", error);
+      }
+    } else {
+      // Jika kedua bidang kosong, beri tahu pengguna
+      setLoading(false);
+      showMessage(false);
+    }
+  };
 
   return (
     <div>
@@ -182,35 +190,31 @@ const Modal = () => {
                     </div>
                   </div>
                   <div className=" flex flex-col gap-4 justify-center items-center mt-8">
-                    <button
-                      onClick={onSubmitHandler}
-                      type="submit"
-                      className="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                    >
-                      <svg
-                        className="me-1 -ms-1 w-5 h-5"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                          clipRule="evenodd"
-                        ></path>
-                      </svg>
-                      Tambah
-                    </button>
-                    {showAlert ? (
-                      showMessage ? (
-                        <Alert message="Success Add Transaction!" />
-                      ) : (
-                        <Alert message="Input data masih kosong!" />
-                      )
+                    {loading ? (
+                      <Loading /> //
                     ) : (
-                      ""
+                      <button
+                        onClick={onSubmitHandler}
+                        type="submit"
+                        className="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      >
+                        <svg
+                          className="me-1 -ms-1 w-5 h-5"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                            clipRule="evenodd"
+                          ></path>
+                        </svg>
+                        Tambah
+                      </button>
                     )}
                   </div>
+                  {loading && <Alert message="Success add Transaction!" />}
                 </form>
               </div>
             </div>

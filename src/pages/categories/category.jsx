@@ -5,9 +5,13 @@ import axios from "axios";
 import { useEffect } from "react";
 import Toggle from "../../components/Atoms/toggle";
 import ModalCategory from "../../components/Atoms/ModalCategory";
+import { useParams } from "react-router-dom";
 // import axios from "axios";
 
 const Category = () => {
+  const { category } = useParams();
+  console.log("param", category);
+
   const [isChecked, setIsChecked] = useState(false);
   const [data, setData] = useState([]);
   // const navigateTo = useNavigate();
@@ -40,7 +44,7 @@ const Category = () => {
           <Toggle onChange={toggleHandler} checked={isChecked} />
         </span>
         <span className="text-3xl cursor-pointer ">
-          <ModalCategory />
+          <ModalCategory title="Tambah Category" icon="+" />
         </span>
       </div>
       <div
@@ -55,6 +59,7 @@ const Category = () => {
                 category={item.category}
                 status={item.status}
                 id={item.id}
+                param={category}
                 endpoint="category"
                 editEnpoint="editcategory"
               />

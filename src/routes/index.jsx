@@ -8,19 +8,17 @@ import Register from "../pages/account/Register/Register";
 import Login from "../pages/account/Login/Login";
 import EditTransaction from "../pages/Transaction/EditTransaction";
 import EditCategory from "../pages/categories/editCategory";
-import AddCategory from "../pages/categories/addcategory";
 function Routers() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<MainApp />}>
           <Route path="/" element={<Home />} />
-          <Route path="/category" element={<Category />} />
+          <Route path="/:category" element={<Category />} />
           <Route path="/addtransaction" element={<AddTransaction />} />
           <Route path="/login" element={<Login />} />
           <Route path="/laporan" element={<Laporan />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/addcategory" element={<AddCategory />} />
           <Route path="/editTransactions/:id" element={<EditTransaction />} />
           <Route path="/editCategory/:id" element={<EditCategory />} />
         </Route>
