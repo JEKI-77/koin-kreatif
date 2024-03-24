@@ -1,19 +1,20 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
-import Toggle from "./toggle";
-import { GetbyIdTransaction, UpdateTransaction } from "../../utils/transaction";
-import Alert from "./Alert";
-import { FaEdit } from "react-icons/fa";
+import { useState } from "react";
+import Toggle from "../../components/Atoms/toggle";
+import { PostTransaction } from "../../utils/transaction";
+import Alert from "../../components/Atoms/Alert";
+import Loading from "../../components/Atoms/Loading";
 
-const EditModal = ({ id }) => {
-  // State untuk mengontrol visibilitas EditModal
-  const [EditModalVisible, setEditModalVisible] = useState(false);
+const AddTransaction = () => {
+  // State untuk mengontrol visibilitas modal
+  const [modalVisible, setModalVisible] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [status, setStatus] = useState("false");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
   const [date, setDate] = useState("");
-  const [showMessage, setshowMessage] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState(false);
 
   const currentDate = new Date(); // Mengambil tanggal saat ini
   const formattedDate = currentDate.toISOString().split("T")[0];
@@ -23,68 +24,63 @@ const EditModal = ({ id }) => {
     setStatus(isChecked ? "false" : "true");
   };
 
-  const getById = async () => {
-    try {
-      const response = await GetbyIdTransaction(id);
-      console.log(response.data);
-      setStatus(response.data.status); // Set isChecked based on status from data
-      setAmount(response.data.amount);
-      setCategory(response.data.category);
-      setDate(response.data.date);
-    } catch (error) {
-      console.log(error);
-      //   alert("get by id gagal", error);
-    }
-  };
-
-  useEffect(() => {
-    getById();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const updateHandler = async (e) => {
-    setEditModalVisible(true);
+  const onSubmitHandler = async (e) => {
+    setModalVisible(true);
     e.preventDefault();
-    const data = {
-      amount,
-      category,
-      status, // Menggunakan status yang sudah diperbarui
-      date: formattedDate,
-    };
 
-    try {
-      await UpdateTransaction(id, data);
-      setshowMessage(true);
-      setAmount("");
-      setCategory("");
-      setDate("");
-      setshowMessage(true);
-      setTimeout(() => {
-        setEditModalVisible(false);
-        window.location.reload();
-      }, 2000);
-    } catch (error) {
-      console.log(error);
-      alert("update gagal", error);
-      // Logika untuk menangani kesalahan
+    if (amount.trim() !== "" && category.trim() !== "") {
+      // Menggunakan trim() untuk menghapus spasi yang tidak diinginkan
+
+      const data = {
+        amount,
+        category,
+        status,
+        date: formattedDate,
+      };
+
+      setLoading(true);
+      try {
+        await PostTransaction(data);
+        setAmount("");
+        setCategory("");
+        setDate("");
+
+        setTimeout(() => {
+          setLoading(false);
+          setMessage(true);
+          setTimeout(() => {
+            setModalVisible(false);
+            window.location.reload();
+          }, 1000);
+        }, 2000);
+      } catch (error) {
+        setLoading(false);
+        setModalVisible(true);
+        console.log(error);
+        alert("create gagal", error);
+      }
+    } else {
+      // Jika kedua bidang kosong, beri tahu pengguna
+      setLoading(false);
+      setMessage(false);
     }
   };
 
   return (
     <div>
-      {/* EditModal toggle */}
+      {/* Modal toggle */}
       <button
-        onClick={() => setEditModalVisible(!EditModalVisible)}
-        className="block text-xl rounded-full  focus:ring-4  font-medium  px-3 py-1 text-center "
+        onClick={() => setModalVisible(!modalVisible)}
+        className="block text-2xl rounded-full bg-orange-600 text-white   focus:ring-4  font-medium  px-3 py-1 text-center "
         type="button"
       >
-        <FaEdit />
+        +
       </button>
 
-      {/* Main EditModal */}
-      {EditModalVisible && (
+      {/* Main modal */}
+      {modalVisible && (
         <div
-          id="crud-EditModal"
+          id="crud-modal"
           tabIndex="-1"
           aria-hidden="true"
           className="fixed inset-0 z-50 overflow-y-auto"
@@ -92,19 +88,19 @@ const EditModal = ({ id }) => {
           <div className="flex items-center justify-center min-h-screen">
             <div className="fixed inset-0 bg-black opacity-50"></div>
             <div className="relative bg-white rounded-lg shadow-lg max-w-md mx-auto p-6">
-              {/* EditModal content */}
+              {/* Modal content */}
               <div className="relative">
-                {/* EditModal header */}
+                {/* Modal header */}
                 <div className="flex items-center justify-between border-b pb-3 mb-3">
                   <h3 className="text-lg font-semibold text-gray-900">
-                    Edit transaksi
+                    Tambah transaksi
                   </h3>
                   <button
-                    onClick={() => setEditModalVisible(!EditModalVisible)}
+                    onClick={() => setModalVisible(!modalVisible)}
                     type="button"
                     className="text-gray-400 hover:text-gray-500 focus:outline-none focus:text-gray-500"
                   >
-                    <span className="sr-only">Close EditModal</span>
+                    <span className="sr-only">Close modal</span>
                     <svg
                       className="h-6 w-6"
                       xmlns="http://www.w3.org/2000/svg"
@@ -121,7 +117,7 @@ const EditModal = ({ id }) => {
                     </svg>
                   </button>
                 </div>
-                {/* EditModal body */}
+                {/* Modal body */}
                 <form className="p-4 md:p-5">
                   <div className="grid gap-4 mb-4 grid-cols-2">
                     <div className=" flex gap-4 items-start w-[50%]">
@@ -194,28 +190,32 @@ const EditModal = ({ id }) => {
                       </select>
                     </div>
                   </div>
-                  <div className=" flex flex-col gap-4 justify-center items-center mt-8">
-                    <button
-                      onClick={updateHandler}
-                      type="submit"
-                      className="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                    >
-                      <svg
-                        className="me-1 -ms-1 w-5 h-5"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
+                  <div className=" flex flex-col gap-4 justify-center items-center mt-8 mb-4">
+                    {loading ? (
+                      <Loading /> //
+                    ) : (
+                      <button
+                        onClick={onSubmitHandler}
+                        type="submit"
+                        className="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                       >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                          clipRule="evenodd"
-                        ></path>
-                      </svg>
-                      Update
-                    </button>
-                    {showMessage ? <Alert message="Success update!" /> : ""}
+                        <svg
+                          className="me-1 -ms-1 w-5 h-5"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                            clipRule="evenodd"
+                          ></path>
+                        </svg>
+                        Tambah
+                      </button>
+                    )}
                   </div>
+                  {message && <Alert message="Success add Transaction!" />}
                 </form>
               </div>
             </div>
@@ -226,4 +226,4 @@ const EditModal = ({ id }) => {
   );
 };
 
-export default EditModal;
+export default AddTransaction;

@@ -6,9 +6,9 @@ import CardTransaction from "../../components/Atoms/CardTransaction";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 // import { useNavigate } from "react-router-dom";
-import Modal from "../../components/Atoms/modal";
 import { GetAllTransaction } from "../../utils/transaction";
 import { useParams } from "react-router-dom";
+import AddTransaction from "../Transaction/AddTransaction";
 // import Alert from "../../components/Atoms/Alert";
 // import { useState } from "react";
 
@@ -38,8 +38,6 @@ const Home = () => {
 
   return (
     <div className="w-[90%] md:w-[40%]">
-      {/* {showAlert ? <Alert message="delete success" /> : ""} */}
-
       <div className=" mt-4 flex justify-center items-center">
         {/* <ReactDatePicker
           selected={startDate}
@@ -50,7 +48,7 @@ const Home = () => {
       <Card />
       <div className="text-3xl cursor-pointer ">
         <span className=" items-center justify-end md:flex hidden">
-          <Modal icon="+" />
+          <AddTransaction icon="+" />
         </span>
       </div>
 

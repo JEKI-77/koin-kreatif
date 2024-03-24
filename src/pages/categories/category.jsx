@@ -4,7 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 import Toggle from "../../components/Atoms/toggle";
-import ModalCategory from "../../components/Atoms/ModalCategory";
+import ModalCategory from "./AddCategory";
 import { useParams } from "react-router-dom";
 // import axios from "axios";
 
@@ -38,7 +38,7 @@ const Category = () => {
     fetchdata();
   }, []);
   return (
-    <div className="justify-center items-center w-[90%] md:w-[50%] mt-8">
+    <div className="justify-center items-center w-[90%] md:w-[50%] mt-8 ">
       <div className="flex justify-between">
         <span className="text-3xl">
           <Toggle onChange={toggleHandler} checked={isChecked} />

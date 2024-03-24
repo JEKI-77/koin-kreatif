@@ -2,9 +2,9 @@
 import { IoMdDownload } from "react-icons/io";
 import { MdUpload } from "react-icons/md";
 // import { useNavigate } from "react-router-dom";
-import EditModal from "./EditModal";
 import DeleteModal from "./ModalDelete";
-import EditCategory from "./EditModalCategory";
+import EditCategory from "../../pages/categories/EditCategory";
+import EditTransaction from "../../pages/Transaction/EditTransaction";
 // import { useState } from "react";
 // import { MdUpload } from "react-icons/md";
 
@@ -39,7 +39,7 @@ const CardTransaction = ({
           {param == "category" ? (
             <EditCategory title="Edit Category" id={id} />
           ) : (
-            <EditModal endpoint={endpoint} id={id} />
+            <EditTransaction endpoint={endpoint} id={id} />
           )}
         </span>
         <DeleteModal endpoint={endpoint} id={id} />

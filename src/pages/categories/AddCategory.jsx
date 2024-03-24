@@ -1,10 +1,10 @@
 import { useState } from "react";
-import Toggle from "./toggle";
+import Toggle from "../../components/Atoms/toggle";
 import { PostCategory } from "../../utils/category";
-import Alert from "./Alert";
+import Alert from "../../components/Atoms/Alert";
 
 // eslint-disable-next-line react/prop-types
-const ModalCategory = ({ title, icon }) => {
+const AddCategory = ({ title, icon }) => {
   // State untuk mengontrol visibilitas ModalCategory
   const [ModalCategoryVisible, setModalCategoryVisible] = useState(false);
   // eslint-disable-next-line no-unused-vars
@@ -60,7 +60,7 @@ const ModalCategory = ({ title, icon }) => {
       {/* ModalCategory toggle */}
       <button
         onClick={toggleModalCategory}
-        className="block text-xl rounded-full  focus:ring-4  font-medium  px-3 py-1 text-center "
+        className="block text-3xl  rounded-full  focus:ring-4  font-medium  px-3 py-1 text-center "
         type="button"
       >
         {icon}
@@ -89,7 +89,6 @@ const ModalCategory = ({ title, icon }) => {
                     type="button"
                     className="text-gray-400 hover:text-gray-500 focus:outline-none focus:text-gray-500"
                   >
-                    <span className="sr-only">Close ModalCategory</span>
                     <svg
                       className="h-6 w-6"
                       xmlns="http://www.w3.org/2000/svg"
@@ -159,7 +158,7 @@ const ModalCategory = ({ title, icon }) => {
                   </button>
                   {showAlert ? (
                     showMessage ? (
-                      <Alert message="Success Add Transaction!" />
+                      <Alert message="Success Add Category!" />
                     ) : (
                       <Alert message="Input data masih kosong!" />
                     )
@@ -176,4 +175,4 @@ const ModalCategory = ({ title, icon }) => {
   );
 };
 
-export default ModalCategory;
+export default AddCategory;
