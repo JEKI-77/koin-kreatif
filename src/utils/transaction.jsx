@@ -10,9 +10,9 @@ export const PostTransaction = (data) => {
     // Logika untuk menangani kesalahan
   }
 };
-export const UpdateTransaction = (data, id) => {
+export const UpdateTransaction = (id, data) => {
   try {
-    axios.post(`${import.meta.env.VITE_APP_URL}/v1/transactions/${id}`, data);
+    axios.put(`${import.meta.env.VITE_APP_URL}/v1/transactions/${id}`, data);
   } catch (error) {
     console.error(error);
 

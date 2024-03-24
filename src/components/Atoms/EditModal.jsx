@@ -4,9 +4,8 @@ import Toggle from "./toggle";
 import { GetbyIdTransaction, UpdateTransaction } from "../../utils/transaction";
 import Alert from "./Alert";
 import { FaEdit } from "react-icons/fa";
-import { useParams } from "react-router-dom";
 
-const EditModal = () => {
+const EditModal = ({ id }) => {
   // State untuk mengontrol visibilitas EditModal
   const [EditModalVisible, setEditModalVisible] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
@@ -15,7 +14,6 @@ const EditModal = () => {
   const [category, setCategory] = useState("");
   const [date, setDate] = useState("");
   const [showMessage, setshowMessage] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
 
   const currentDate = new Date(); // Mengambil tanggal saat ini
   const formattedDate = currentDate.toISOString().split("T")[0];
@@ -25,14 +23,14 @@ const EditModal = () => {
     setStatus(isChecked ? "false" : "true");
   };
 
-  const { id } = useParams();
-
   const getById = async () => {
     try {
       const response = await GetbyIdTransaction(id);
+      console.log(response.data);
       setStatus(response.data.status); // Set isChecked based on status from data
       setAmount(response.data.amount);
       setCategory(response.data.category);
+      setDate(response.data.date);
     } catch (error) {
       console.log(error);
       //   alert("get by id gagal", error);
@@ -42,10 +40,10 @@ const EditModal = () => {
   useEffect(() => {
     getById();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+  }, []);
 
   const updateHandler = async (e) => {
-    EditModalVisible(true);
+    setEditModalVisible(true);
     e.preventDefault();
     const data = {
       amount,
@@ -54,27 +52,21 @@ const EditModal = () => {
       date: formattedDate,
     };
 
-    if (amount !== "" || category !== "") {
-      try {
-        await UpdateTransaction(id, data);
-        setshowMessage(true);
-        setAmount("");
-        setCategory("");
-        setDate("");
-        setshowMessage(true);
-        setShowAlert(true);
-        setTimeout(() => {
-          EditModalVisible(false);
-          window.location.reload();
-        }, 2000);
-      } catch (error) {
-        console.log(error);
-        alert("create gagal", error);
-        // Logika untuk menangani kesalahan
-      }
-    } else {
-      setShowAlert(true);
-      showMessage(false);
+    try {
+      await UpdateTransaction(id, data);
+      setshowMessage(true);
+      setAmount("");
+      setCategory("");
+      setDate("");
+      setshowMessage(true);
+      setTimeout(() => {
+        setEditModalVisible(false);
+        window.location.reload();
+      }, 2000);
+    } catch (error) {
+      console.log(error);
+      alert("update gagal", error);
+      // Logika untuk menangani kesalahan
     }
   };
 
@@ -222,15 +214,7 @@ const EditModal = () => {
                       </svg>
                       Update
                     </button>
-                    {showAlert ? (
-                      showMessage ? (
-                        <Alert message="Success Add Transaction!" />
-                      ) : (
-                        <Alert message="Input data masih kosong!" />
-                      )
-                    ) : (
-                      ""
-                    )}
+                    {showMessage ? <Alert message="Success update!" /> : ""}
                   </div>
                 </form>
               </div>
