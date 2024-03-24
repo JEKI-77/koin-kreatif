@@ -1,15 +1,25 @@
-import { FaEdit } from "react-icons/fa";
+/* eslint-disable react/prop-types */
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import { IoMdDownload } from "react-icons/io";
 import { MdUpload } from "react-icons/md";
-import axios from "axios";
 import { confirmAlert } from "react-confirm-alert";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import { DeleteTransaction } from "../../utils/transaction";
+import EditModal from "./EditModal";
+// import { useState } from "react";
 // import { MdUpload } from "react-icons/md";
 
 // eslint-disable-next-line react/prop-types
-const CardTransaction = ({ amount, category, status, id, endpoint, editEnpoint }) => {
-  const navigateTo = useNavigate();
+const CardTransaction = ({
+  amount,
+  category,
+  status,
+  date,
+  id,
+  endpoint,
+  // editEnpoint,
+}) => {
+  // const navigateTo = useNavigate();
 
   const ConfirmDelete = () => {
     confirmAlert({
@@ -22,10 +32,7 @@ const CardTransaction = ({ amount, category, status, id, endpoint, editEnpoint }
               <button onClick={onClose}>Tidak</button>
               <button
                 onClick={() => {
-                  axios
-                    .delete(
-                      `${import.meta.env.VITE_APP_URL}/v1/${endpoint}/${id}`
-                    )
+                  DeleteTransaction(endpoint, id)
                     // eslint-disable-next-line no-unused-vars
                     .then((res) => {
                       alert("delete success");
@@ -58,15 +65,16 @@ const CardTransaction = ({ amount, category, status, id, endpoint, editEnpoint }
         </div>
         <div>
           <h1>{amount}</h1>
-          <span>{category}</span>
+          <div>{category}</div>
+          <div>{date}</div>
         </div>
       </div>
       <div className="flex gap-8 justify-center items-center">
         <span
           className="cursor-pointer"
-          onClick={() => navigateTo(`/${editEnpoint}/${id}`)}
+          // onClick={() => navigateTo(`/${editEnpoint}/${id}`)}
         >
-          <FaEdit />
+          <EditModal />
         </span>
         <span className="cursor-pointer " onClick={ConfirmDelete}>
           <RiDeleteBin5Fill />

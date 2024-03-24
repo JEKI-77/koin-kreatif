@@ -4,22 +4,22 @@ import { useEffect } from "react";
 import Card from "../../components/Atoms/Card";
 import CardTransaction from "../../components/Atoms/CardTransaction";
 import "react-datepicker/dist/react-datepicker.css";
-import axios from "axios";
 import { useState } from "react";
-import { IoMdAdd } from "react-icons/io";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import Modal from "../../components/Atoms/modal";
+import { GetAllTransaction } from "../../utils/transaction";
+// import Alert from "../../components/Atoms/Alert";
 // import { useState } from "react";
 
 const Home = () => {
   const [data, setData] = useState([]);
-  const navigateTo = useNavigate();
+  // const [showAlert, setShowAlert] = useState(false);
 
   const fetchdata = async () => {
     try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_APP_URL}/v1/transactions`
-      );
+      const response = await GetAllTransaction();
       setData(response.data);
+      // console.log("data", response);
     } catch (error) {
       console.log(error);
       alert("create gagal", error);
@@ -31,8 +31,12 @@ const Home = () => {
     fetchdata();
   }, []);
 
+  const formatDate = (date) => new Date(date).toISOString().slice(0, 10);
+
   return (
     <div className="w-[90%] md:w-[40%]">
+      {/* {showAlert ? <Alert message="delete success" /> : ""} */}
+
       <div className=" mt-4 flex justify-center items-center">
         {/* <ReactDatePicker
           selected={startDate}
@@ -40,19 +44,16 @@ const Home = () => {
           scrollableYearDropdown // membuat dropdown tahun menjadi scrollable
         /> */}
       </div>
-
       <Card />
-      <div
-        className="text-3xl cursor-pointer "
-        onClick={() => navigateTo("/addTransaction")}
-      >
+      <div className="text-3xl cursor-pointer ">
         <span className=" items-center justify-end md:flex hidden">
-          <IoMdAdd />
+          <Modal icon="+" />
         </span>
       </div>
+
       <div
         className="
-      no-scrollbar overflow-y-auto h-[30em] md:h-[45em]"
+      no-scrollbar overflow-y-auto h-[30em] md:h-[30em]"
       >
         {Array.isArray(data) &&
           data.map((item, index) => (
@@ -61,6 +62,7 @@ const Home = () => {
                 amount={item.amount}
                 category={item.category}
                 status={item.status}
+                date={formatDate(item.date)}
                 id={item.id}
                 endpoint="transactions"
                 editEnpoint="editTransactions"

@@ -1,16 +1,16 @@
-import { IoMdAdd } from "react-icons/io";
 import CardTransaction from "../../components/Atoms/CardTransaction";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 import Toggle from "../../components/Atoms/toggle";
+import ModalCategory from "../../components/Atoms/ModalCategory";
 // import axios from "axios";
 
 const Category = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [data, setData] = useState([]);
-  const navigateTo = useNavigate();
+  // const navigateTo = useNavigate();
 
   const toggleHandler = () => {
     setIsChecked(!isChecked);
@@ -39,11 +39,8 @@ const Category = () => {
         <span className="text-3xl">
           <Toggle onChange={toggleHandler} checked={isChecked} />
         </span>
-        <span
-          className="text-3xl cursor-pointer "
-          onClick={() => navigateTo("/addcategory")}
-        >
-          <IoMdAdd />
+        <span className="text-3xl cursor-pointer ">
+          <ModalCategory />
         </span>
       </div>
       <div

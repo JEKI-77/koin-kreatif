@@ -3,7 +3,7 @@ import { FaHome } from "react-icons/fa";
 import { BiCategory } from "react-icons/bi";
 import { AiOutlineTransaction } from "react-icons/ai";
 import { IoPersonCircleOutline } from "react-icons/io5";
-import { IoAddCircle } from "react-icons/io5";
+import Modal from "./modal";
 
 const Navbar = () => {
   return (
@@ -32,33 +32,34 @@ const Navbar = () => {
       </div>
 
       {/* mobile navbar */}
-      <div className="md:hidden bg-green-500 absolute bottom-0 left-0 right-0 ">
+      <div
+        className="md:hidden bg-green-500 absolute bottom-0 left-0 right-0 m-2
+       shadow-md rounded-xl "
+      >
         <ul className="flex justify-around items-center h-20  ">
-          <li className="text-2xl">
+          <li className="text-3xl">
             <Link to="/">
               <FaHome />
             </Link>
           </li>
-          <li className="text-2xl">
+          <li className="text-3xl">
             <Link to="/category">
               <BiCategory />
             </Link>
           </li>
 
           <li className="text-5xl absolute mb-20  ">
-            <Link to="/addtransaction">
-              <span className="text-center ">
-                <IoAddCircle />
-              </span>
-            </Link>
+            <span className="text-center ">
+              <Modal />
+            </span>
           </li>
-          <li className="text-2xl">
+          <li className="text-3xl">
             <Link to="/laporan">
               <AiOutlineTransaction />
             </Link>
           </li>
 
-          <li className="text-2xl">
+          <li className="text-3xl">
             <Link to="/login">
               <IoPersonCircleOutline />
             </Link>

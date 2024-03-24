@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Toggle from "../../components/Atoms/toggle";
-import axios from "axios";
+import { PostTransaction } from "../../utils/transaction";
 const AddTransaction = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [amount, setAmount] = useState("");
@@ -12,15 +12,15 @@ const AddTransaction = () => {
   };
 
   console.log(isChecked);
-  const data = {
-    amount,
-    category,
-    status: isChecked,
-  };
 
   const onSubmitHandler = async () => {
+    const data = {
+      amount,
+      category,
+      status: isChecked,
+    };
     try {
-      await axios.post(`${import.meta.env.VITE_APP_URL}/v1/transactions`, data);
+      await PostTransaction(data);
       alert("create success");
     } catch (error) {
       console.log(error);

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Toggle from "../../components/Atoms/toggle";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { GetbyIdTransaction } from "../../utils/transaction";
 
 const EditTransaction = () => {
   const [data, setData] = useState({});
@@ -18,9 +19,7 @@ const EditTransaction = () => {
 
   const getById = async () => {
     try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_APP_URL}/v1/transactions/${id}`
-      );
+      const response = await GetbyIdTransaction(id);
       setData(response.data);
       setIsChecked(response.data.status); // Set isChecked based on status from data
       setAmount(response.data.amount);
