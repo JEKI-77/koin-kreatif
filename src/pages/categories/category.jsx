@@ -29,7 +29,7 @@ const Category = () => {
       console.log("data", response);
     } catch (error) {
       console.log(error);
-      alert("create gagal", error);
+
       // Logika untuk msenangani kesalahan
     }
   };
