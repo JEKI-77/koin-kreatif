@@ -71,7 +71,7 @@ const AddTransaction = () => {
       {/* Modal toggle */}
       <button
         onClick={() => setModalVisible(!modalVisible)}
-        className="block text-2xl rounded-full bg-orange-600 text-white   focus:ring-4  font-medium  px-3 py-1 text-center "
+        className="flex text-3xl justify-center items-center px-3 py-1 rounded-full bg-yellow-500 text-white   focus:ring-4  font-medium   text-center "
         type="button"
       >
         +

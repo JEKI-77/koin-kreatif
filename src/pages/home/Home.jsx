@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 import AddTransaction from "../Transaction/AddTransaction";
 // import Alert from "../../components/Atoms/Alert";
 // import { useState } from "react";
+import dayjs from "dayjs";
 
 const Home = () => {
   const { params } = useParams();
@@ -34,7 +35,7 @@ const Home = () => {
     fetchdata();
   }, []);
 
-  const formatDate = (date) => new Date(date).toISOString().slice(0, 10);
+  // const formatDate = (date) => new Date(date).toISOString().slice(0, 10);
 
   return (
     <div className="w-[90%] md:w-[40%]">
@@ -63,7 +64,7 @@ const Home = () => {
                 amount={item.amount}
                 category={item.category}
                 status={item.status}
-                date={formatDate(item.date)}
+                date={dayjs(item.date).format("d MMM YYYY")}
                 id={item.id}
                 endpoint="transactions"
                 editEnpoint="editTransactions"
