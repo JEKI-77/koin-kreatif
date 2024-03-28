@@ -47,11 +47,6 @@ const Home = () => {
         /> */}
       </div>
       <Card />
-      <div className="text-3xl cursor-pointer ">
-        <span className=" items-center justify-end md:flex hidden">
-          <AddTransaction icon="+" />
-        </span>
-      </div>
 
       <div
         className="
@@ -71,6 +66,11 @@ const Home = () => {
               />
             </div>
           ))}
+      </div>
+      <div className="text-3xl cursor-pointer absolute  w-[20em] ">
+        <span className=" items-center justify-end md:flex hidden">
+          <AddTransaction icon="+" />
+        </span>
       </div>
     </div>
   );

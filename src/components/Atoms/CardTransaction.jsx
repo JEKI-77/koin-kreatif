@@ -19,7 +19,7 @@ const CardTransaction = ({
   param,
 }) => {
   return (
-    <div className="bg-white py-2 shadow-[0_3px_10px_rgb(0,0,0,0.2)] flex justify-between rounded-md px-4 mx-1 ">
+    <div className="bg-slate-100 py-2 shadow-[0_3px_10px_rgb(0,0,0,0.2)] flex justify-between rounded-md px-4 mx-1 ">
       <div className="flex gap-4">
         <div
           className={`flex justify-center items-center text-xl ${
