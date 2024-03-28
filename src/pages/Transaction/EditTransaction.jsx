@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import Toggle from "../../components/Atoms/toggle";
@@ -5,6 +6,7 @@ import { GetbyIdTransaction, UpdateTransaction } from "../../utils/transaction";
 import Alert from "../../components/Atoms/Alert";
 import { FaEdit } from "react-icons/fa";
 import Loading from "../../components/Atoms/Loading";
+import { GetAllCategory } from "../../utils/category";
 
 const EditTransaction = ({ id }) => {
   // State untuk mengontrol visibilitas EditModal
@@ -16,6 +18,7 @@ const EditTransaction = ({ id }) => {
   const [date, setDate] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(false);
+  const [categoryData, setCategoryData] = useState([]);
 
   const currentDate = new Date(); // Mengambil tanggal saat ini
   const formattedDate = currentDate.toISOString().split("T")[0];
@@ -25,10 +28,10 @@ const EditTransaction = ({ id }) => {
     setStatus(isChecked ? "false" : "true");
   };
 
+  // get transaction by id
   const getById = async () => {
     try {
       const response = await GetbyIdTransaction(id);
-      console.log(response.data);
       setStatus(response.data.status); // Set isChecked based on status from data
       setAmount(response.data.amount);
       setCategory(response.data.category);
@@ -39,11 +42,7 @@ const EditTransaction = ({ id }) => {
     }
   };
 
-  useEffect(() => {
-    getById();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+  //update  transactions
   const updateHandler = async (e) => {
     setEditModalVisible(true);
     e.preventDefault();
@@ -74,6 +73,17 @@ const EditTransaction = ({ id }) => {
       setMessage(false);
     }
   };
+
+  //get data category
+  const fetchCategory = async () => {
+    const response = await GetAllCategory();
+    setCategoryData(response.data);
+  };
+
+  useEffect(() => {
+    getById();
+    fetchCategory();
+  }, []);
 
   return (
     <div>
@@ -149,8 +159,8 @@ const EditTransaction = ({ id }) => {
                       <input
                         value={amount}
                         onChange={(e) => setAmount(e.target.value)}
-                        type="number"
-                        name="number"
+                        type="text"
+                        name="text"
                         id="number"
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                         placeholder="Amount"
@@ -192,10 +202,11 @@ const EditTransaction = ({ id }) => {
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                       >
                         <option value="">Select category</option>
-                        <option value="TV">TV/Monitors</option>
-                        <option value="PC">PC</option>
-                        <option value="GA">Gaming/Console</option>
-                        <option value="PH">Phones</option>
+                        {categoryData.map((info, index) => (
+                          <option key={index} value={info.category}>
+                            {info.category}
+                          </option>
+                        ))}
                       </select>
                     </div>
                   </div>

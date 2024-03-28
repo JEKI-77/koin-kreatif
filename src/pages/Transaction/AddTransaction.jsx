@@ -4,6 +4,8 @@ import Toggle from "../../components/Atoms/toggle";
 import { PostTransaction } from "../../utils/transaction";
 import Alert from "../../components/Atoms/Alert";
 import Loading from "../../components/Atoms/Loading";
+import { GetAllCategory } from "../../utils/category";
+import { useEffect } from "react";
 
 const AddTransaction = () => {
   // State untuk mengontrol visibilitas modal
@@ -15,6 +17,7 @@ const AddTransaction = () => {
   const [date, setDate] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(false);
+  const [categoryData, setCategoryData] = useState([]);
 
   const currentDate = new Date(); // Mengambil tanggal saat ini
   const formattedDate = currentDate.toISOString().split("T")[0];
@@ -65,6 +68,15 @@ const AddTransaction = () => {
       setMessage(false);
     }
   };
+
+  const fetchCategory = async () => {
+    const response = await GetAllCategory();
+    setCategoryData(response.data);
+  };
+
+  useEffect(() => {
+    fetchCategory();
+  }, []);
 
   return (
     <div>
@@ -140,9 +152,9 @@ const AddTransaction = () => {
                       <input
                         value={amount}
                         onChange={(e) => setAmount(e.target.value)}
-                        type="number"
-                        name="number"
-                        id="number"
+                        type="text"
+                        name="text"
+                        id="text"
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                         placeholder="Amount"
                         required=""
@@ -176,6 +188,7 @@ const AddTransaction = () => {
                       >
                         Category
                       </label>
+
                       <select
                         value={category}
                         onChange={(e) => setCategory(e.target.value)}
@@ -183,10 +196,11 @@ const AddTransaction = () => {
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                       >
                         <option value="">Select category</option>
-                        <option value="TV">TV/Monitors</option>
-                        <option value="PC">PC</option>
-                        <option value="GA">Gaming/Console</option>
-                        <option value="PH">Phones</option>
+                        {categoryData.map((info, index) => (
+                          <option key={index} value={info.category}>
+                            {info.category}
+                          </option>
+                        ))}
                       </select>
                     </div>
                   </div>

@@ -4,7 +4,7 @@ import { MdUpload } from "react-icons/md";
 const Card = () => {
   return (
     <>
-      <div className="bg-[#ebeaee] h-20 shadow-md  items-center flex justify-around rounded-md px-4 ">
+      <div className="bg-[#a9ccd7] h-20 shadow-md  items-center flex justify-around rounded-md px-4 ">
         <div className="flex gap-4">
           <div className="flex justify-center items-center">
             <span className="text-green-600 text-2xl">

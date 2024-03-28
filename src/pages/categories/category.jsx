@@ -26,7 +26,6 @@ const Category = () => {
         `${import.meta.env.VITE_APP_URL}/v1/category`
       );
       setData(response.data);
-      console.log("data", response);
     } catch (error) {
       console.log(error);
 

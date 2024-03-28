@@ -21,6 +21,7 @@ const EditCategory = ({ title, id }) => {
   const toggleModalCategory = () => {
     setModalCategoryVisible(!ModalCategoryVisible);
   };
+
   const toggleHandler = () => {
     setIsChecked(!isChecked);
     setStatus(isChecked ? "false" : "true");
