@@ -41,7 +41,7 @@ const Home = () => {
 
       <div
         className="
-      no-scrollbar overflow-y-auto h-[25em] md:h-[40em]"
+      no-scrollbar overflow-y-auto h-[25em] md:h-[30em]"
       >
         {Array.isArray(data) &&
           data.map((item, index) => (
@@ -58,7 +58,7 @@ const Home = () => {
             </div>
           ))}
       </div>
-      <div className="text-3xl cursor-pointer absolute  w-[20em] ">
+      <div className="text-3xl cursor-pointer absolute  w-[40%]   ">
         <span className=" items-center justify-end md:flex hidden">
           <AddTransaction icon="+" />
         </span>
