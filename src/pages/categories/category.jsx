@@ -1,11 +1,11 @@
 import CardTransaction from "../../components/Atoms/CardTransaction";
 // import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import axios from "axios";
 import { useEffect } from "react";
 // import Toggle from "../../components/Atoms/toggle";
 import ModalCategory from "./AddCategory";
 import { useParams } from "react-router-dom";
+import { GetAllCategory } from "../../utils/category";
 // import axios from "axios";
 
 const Category = () => {
@@ -22,9 +22,7 @@ const Category = () => {
 
   const fetchdata = async () => {
     try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_APP_URL}/v1/category`
-      );
+      const response = await GetAllCategory();
       setData(response.data);
     } catch (error) {
       console.log(error);

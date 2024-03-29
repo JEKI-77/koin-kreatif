@@ -19,6 +19,8 @@ const AddCategory = ({ title, icon }) => {
   const toggleModalCategory = () => {
     setModalCategoryVisible(!ModalCategoryVisible);
   };
+
+  
   const toggleHandler = () => {
     setIsChecked(!isChecked);
     setStatus(isChecked ? "false" : "true");
