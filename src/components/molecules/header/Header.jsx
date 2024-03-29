@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import { BiCategory } from "react-icons/bi";
 import { IoPersonCircleOutline } from "react-icons/io5";
@@ -15,18 +15,26 @@ const Header = () => {
           <img src={logo} className="h-20 w-full object-cover " alt="image" />
         </div>
         {/* desktop navbar */}
-        <ul className=" gap-4 md:flex hidden mt-4">
+        <ul className=" gap-4 md:flex hidden mt-4 navbar_style font-semibold text-gray-700">
           <li>
-            <Link to="/">Home</Link>
+            <NavLink to="/" activeClassName="active">
+              Home
+            </NavLink>
           </li>
           <li>
-            <Link to="/category">categories</Link>
+            <NavLink to="/category" activeClassName="active">
+              Categories
+            </NavLink>
           </li>
           <li>
-            <Link to="/laporan">laporan</Link>
+            <NavLink to="/laporan" activeClassName="active">
+              Reports
+            </NavLink>
           </li>
           <li>
-            <Link to="/login">Login</Link>
+            <NavLink to="/login" activeClassName="active">
+              Login
+            </NavLink>
           </li>
         </ul>
       </div>
@@ -38,14 +46,14 @@ const Header = () => {
       >
         <ul className="flex justify-around items-center h-20  ">
           <li className="text-3xl">
-            <Link to="/">
+            <NavLink to="/">
               <FaHome />
-            </Link>
+            </NavLink>
           </li>
           <li className="text-3xl">
-            <Link to="/category">
+            <NavLink to="/category">
               <BiCategory />
-            </Link>
+            </NavLink>
           </li>
 
           <li className="text-5xl absolute mb-20  ">
@@ -54,15 +62,15 @@ const Header = () => {
             </span>
           </li>
           <li className="text-3xl ml-12">
-            <Link to="/laporan">
+            <NavLink to="/laporan">
               <VscGraph />
-            </Link>
+            </NavLink>
           </li>
 
           <li className="text-3xl">
-            <Link to="/login">
+            <NavLink to="/login">
               <IoPersonCircleOutline />
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </div>

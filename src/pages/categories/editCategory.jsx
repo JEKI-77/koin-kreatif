@@ -12,7 +12,6 @@ const EditCategory = ({ title, id }) => {
   // eslint-disable-next-line no-unused-vars
   const [EditModalVisible, setEditModalVisible] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
-  const [status, setStatus] = useState("false");
   const [category, setCategory] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(false);
@@ -24,13 +23,12 @@ const EditCategory = ({ title, id }) => {
 
   const toggleHandler = () => {
     setIsChecked(!isChecked);
-    setStatus(isChecked ? "false" : "true");
   };
 
   const getById = async () => {
     try {
       const response = await GetbyIdCategory(id);
-      setStatus(response.data.status); // Set isChecked based on status from data
+      setIsChecked(response.data.status); // Set isChecked based on status from data
       setCategory(response.data.category);
     } catch (error) {
       console.log(error);
@@ -48,13 +46,12 @@ const EditCategory = ({ title, id }) => {
     e.preventDefault();
     const data = {
       category,
-      status, // Menggunakan status yang sudah diperbarui
+      status: isChecked ? "true" : "false",
     };
     setLoading(true);
     try {
       await UpdateCategory(id, data);
 
-      setCategory("");
       setTimeout(() => {
         setLoading(false);
         setMessage(true);
@@ -121,12 +118,13 @@ const EditCategory = ({ title, id }) => {
                   </button>
                 </div>
                 {/* ModalCategory body */}
-                <form className="p-4 md:p-5">
+                <form className="p-4 md:p-5 flex flex-col justify-center items-center">
                   <div className="grid gap-4  grid-cols-2">
                     <div className="col-span-2">
                       <div className=" flex gap-4 mb-6 items-start w-[50%]">
                         <span className="text-3xl">
                           <Toggle
+                            value={isChecked}
                             onChange={toggleHandler}
                             checked={isChecked}
                           />
@@ -172,10 +170,10 @@ const EditCategory = ({ title, id }) => {
                           clipRule="evenodd"
                         ></path>
                       </svg>
-                      Simpan
+                      Update
                     </button>
                   )}
-                  {message && <Alert message="Success Update Transaction !" />}
+                  {message && <Alert message="Success Update  !" />}
                 </form>
               </div>
             </div>

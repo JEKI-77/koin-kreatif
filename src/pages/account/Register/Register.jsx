@@ -20,7 +20,7 @@ const Register = () => {
   };
 
   return (
-    <div className="max-h-full  justify-center items-center  flex w-full  bg-gray-100   ">
+    <div className="max-h-full  justify-center items-center  flex w-full h-full bg-gray-100   ">
       <div className="flex flex-col gap-8 w-full md:w-[50%]  md:px-40 py-8  m-4 mb-32 ">
         <div className="w-full ">
           <form className="w-full ">

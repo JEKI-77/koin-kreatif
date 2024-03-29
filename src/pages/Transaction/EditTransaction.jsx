@@ -11,8 +11,8 @@ import { GetAllCategory } from "../../utils/category";
 const EditTransaction = ({ id }) => {
   // State untuk mengontrol visibilitas EditModal
   const [EditModalVisible, setEditModalVisible] = useState(false);
+  // const [status, setStatus] = useState("");
   const [isChecked, setIsChecked] = useState(false);
-  const [status, setStatus] = useState("false");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
   const [date, setDate] = useState("");
@@ -25,14 +25,15 @@ const EditTransaction = ({ id }) => {
 
   const toggleHandler = () => {
     setIsChecked(!isChecked);
-    setStatus(isChecked ? "false" : "true");
+    // setStatus(status ? "true" : "false"); // Memperbarui nilai status sesuai dengan nilai isChecked yang baru
   };
 
   // get transaction by id
   const getById = async () => {
     try {
       const response = await GetbyIdTransaction(id);
-      setStatus(response.data.status); // Set isChecked based on status from data
+      // setStatus(response.data.status);
+      setIsChecked(response.data.status); // Set isChecked based on status from data
       setAmount(response.data.amount);
       setCategory(response.data.category);
       setDate(response.data.date);
@@ -49,15 +50,16 @@ const EditTransaction = ({ id }) => {
     const data = {
       amount,
       category,
-      status, // Menggunakan status yang sudah diperbarui
+      // status, // Menggunakan status yang sudah diperbarui
+      status: isChecked ? "true" : "false",
       date: formattedDate,
     };
     setLoading(true);
     try {
       await UpdateTransaction(id, data);
-      setAmount("");
-      setCategory("");
-      setDate("");
+      // setAmount("");
+      // setCategory("");
+      // setDate("");
 
       setTimeout(() => {
         setLoading(false);
@@ -83,6 +85,7 @@ const EditTransaction = ({ id }) => {
   useEffect(() => {
     getById();
     fetchCategory();
+    toggleHandler();
   }, []);
 
   return (
@@ -141,7 +144,11 @@ const EditTransaction = ({ id }) => {
                   <div className="grid gap-4 mb-4 grid-cols-2">
                     <div className=" flex gap-4 items-start w-[50%]">
                       <span className="text-3xl">
-                        <Toggle onChange={toggleHandler} checked={isChecked} />
+                        <Toggle
+                          value={isChecked}
+                          onChange={toggleHandler}
+                          checked={isChecked}
+                        />
                       </span>
                       {isChecked ? (
                         <span className="text-xl">Incame</span>

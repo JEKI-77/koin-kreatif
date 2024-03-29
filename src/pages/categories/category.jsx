@@ -3,7 +3,7 @@ import CardTransaction from "../../components/Atoms/CardTransaction";
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
-import Toggle from "../../components/Atoms/toggle";
+// import Toggle from "../../components/Atoms/toggle";
 import ModalCategory from "./AddCategory";
 import { useParams } from "react-router-dom";
 // import axios from "axios";
@@ -12,13 +12,13 @@ const Category = () => {
   const { category } = useParams();
   console.log("param", category);
 
-  const [isChecked, setIsChecked] = useState(false);
+  // const [isChecked, setIsChecked] = useState(false);
   const [data, setData] = useState([]);
   // const navigateTo = useNavigate();
 
-  const toggleHandler = () => {
-    setIsChecked(!isChecked);
-  };
+  // const toggleHandler = () => {
+  //   setIsChecked(!isChecked);
+  // };
 
   const fetchdata = async () => {
     try {
@@ -39,9 +39,9 @@ const Category = () => {
   return (
     <div className="justify-center items-center w-[90%] md:w-[50%] mt-8 ">
       <div className="flex justify-between">
-        <span className="text-3xl">
+        {/* <span className="text-3xl">
           <Toggle onChange={toggleHandler} checked={isChecked} />
-        </span>
+        </span> */}
         <span className="text-3xl cursor-pointer ">
           <ModalCategory title="Tambah Category" icon="+" />
         </span>
