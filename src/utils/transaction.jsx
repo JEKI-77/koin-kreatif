@@ -1,9 +1,10 @@
 /* eslint-disable no-undef */
 import axios from "axios";
+const url = "api-koin-kreatif.cloud";
 
 export const PostTransaction = (data) => {
   try {
-    axios.post(`${import.meta.env.VITE_APP_URL}/v1/transactions`, data);
+    axios.post(`${url}/v1/transactions`, data);
   } catch (error) {
     console.error(error);
 
@@ -12,7 +13,7 @@ export const PostTransaction = (data) => {
 };
 export const UpdateTransaction = (id, data) => {
   try {
-    axios.put(`${import.meta.env.VITE_APP_URL}/v1/transactions/${id}`, data);
+    axios.put(`${url}/v1/transactions/${id}`, data);
   } catch (error) {
     console.error(error);
 
@@ -22,9 +23,7 @@ export const UpdateTransaction = (id, data) => {
 
 export const GetAllTransaction = async () => {
   try {
-    const data = await axios.get(
-      `${import.meta.env.VITE_APP_URL}/v1/transactions`
-    );
+    const data = await axios.get(`${url}/v1/transactions`);
     return data;
   } catch (error) {
     console.error(error);
@@ -33,9 +32,7 @@ export const GetAllTransaction = async () => {
 
 export const GetbyIdTransaction = async (id) => {
   try {
-    const data = await axios.get(
-      `${import.meta.env.VITE_APP_URL}/v1/transactions/${id}`
-    );
+    const data = await axios.get(`${url}/v1/transactions/${id}`);
     return data;
   } catch (error) {
     console.error(error);
@@ -44,9 +41,7 @@ export const GetbyIdTransaction = async (id) => {
 
 export const DeleteTransaction = async (endpoint, id) => {
   try {
-    const data = await axios.delete(
-      `${import.meta.env.VITE_APP_URL}/v1/${endpoint}/${id}`
-    );
+    const data = await axios.delete(`${url}/v1/${endpoint}/${id}`);
     return data;
   } catch (error) {
     console.error(error);
