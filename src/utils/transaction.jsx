@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import axios from "axios";
-const url = "api-koin-kreatif.cloud";
+const url = "https://api-koin-kreatif.cloud";
 
 export const PostTransaction = (data) => {
   try {
