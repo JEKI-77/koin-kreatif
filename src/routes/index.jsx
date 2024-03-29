@@ -6,8 +6,8 @@ import MainApp from "../pages/mainApp";
 import Register from "../pages/account/Register/Register";
 import Login from "../pages/account/Login/Login";
 import EditTransaction from "../pages/Transaction/EditTransaction";
-import EditCategory from "../pages/categories/EditCategory";
 import Category from "../pages/categories/category";
+import EditCategory from "../pages/categories/EditCategory";
 
 function Routers() {
   return (
