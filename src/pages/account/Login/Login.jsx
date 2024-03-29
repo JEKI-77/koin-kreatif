@@ -19,7 +19,7 @@ const Login = () => {
   };
 
   return (
-    <div className=" justify-center items-center  flex w-full h-full   bg-gray-100   ">
+    <div className=" justify-center  flex w-full h-full   bg-gray-100   ">
       <div className="flex flex-col gap-8 w-full md:w-[50%]  md:px-40 py-20  m-4 bg-gray-100    ">
         <div className="w-full">
           <form className="w-full">
