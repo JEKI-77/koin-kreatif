@@ -14,19 +14,11 @@ function Routers() {
     <Router>
       <Routes>
         <Route path="/" element={<MainApp />}>
-          <Route path="/" className="navbar-link" element={<Home />} />
-          <Route
-            path="/:category"
-            className="navbar-link"
-            element={<Category />}
-          />
+          <Route path="/" element={<Home />} />
+          <Route path="/:category" element={<Category />} />
           <Route path="/addtransaction" element={<AddTransaction />} />
-          <Route path="/login" className="navbar-link" element={<Login />} />
-          <Route
-            path="/laporan"
-            className="navbar-link"
-            element={<Laporan />}
-          />
+          <Route path="/login" element={<Login />} />
+          <Route path="/laporan" element={<Laporan />} />
           <Route path="/register" element={<Register />} />
           <Route path="/editTransactions/:id" element={<EditTransaction />} />
           <Route path="/editCategory/:id" element={<EditCategory />} />
