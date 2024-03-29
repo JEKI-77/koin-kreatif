@@ -12,7 +12,6 @@ const Card = () => {
     try {
       const response = await GetAllTransaction();
       setData(response.data);
-      console.log("data card page", response.data);
     } catch (error) {
       console.log(error);
 

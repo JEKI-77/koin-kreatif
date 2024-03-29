@@ -10,15 +10,7 @@ import { GetAllCategory } from "../../utils/category";
 
 const Category = () => {
   const { category } = useParams();
-  console.log("param", category);
-
-  // const [isChecked, setIsChecked] = useState(false);
   const [data, setData] = useState([]);
-  // const navigateTo = useNavigate();
-
-  // const toggleHandler = () => {
-  //   setIsChecked(!isChecked);
-  // };
 
   const fetchdata = async () => {
     try {

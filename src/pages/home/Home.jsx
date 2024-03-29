@@ -5,37 +5,28 @@ import Card from "../../components/Atoms/Card";
 import CardTransaction from "../../components/Atoms/CardTransaction";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
 import { GetAllTransaction } from "../../utils/transaction";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import AddTransaction from "../Transaction/AddTransaction";
 // import Alert from "../../components/Atoms/Alert";
-// import { useState } from "react";
 import dayjs from "dayjs";
 
 const Home = () => {
-  const { params } = useParams();
-  console.log("paramse", params);
-  const [data, setData] = useState([]);
-  // const [showAlert, setShowAlert] = useState(false);
+  // const { params } = useParams();
 
+  const [data, setData] = useState([]);
   const fetchdata = async () => {
     try {
       const response = await GetAllTransaction();
       setData(response.data);
-      // console.log("data", response);
     } catch (error) {
       console.log(error);
-
-      // Logika untuk msenangani kesalahan
     }
   };
 
   useEffect(() => {
     fetchdata();
   }, []);
-
-  // const formatDate = (date) => new Date(date).toISOString().slice(0, 10);
 
   return (
     <div className="w-[90%] md:w-[40%]">
@@ -50,7 +41,7 @@ const Home = () => {
 
       <div
         className="
-      no-scrollbar overflow-y-auto h-[30em] md:h-[30em]"
+      no-scrollbar overflow-y-auto h-[25em] md:h-[40em]"
       >
         {Array.isArray(data) &&
           data.map((item, index) => (

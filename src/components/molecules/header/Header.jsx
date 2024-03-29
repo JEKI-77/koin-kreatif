@@ -17,22 +17,22 @@ const Header = () => {
         {/* desktop navbar */}
         <ul className=" gap-4 md:flex hidden mt-4 navbar_style font-semibold text-gray-700">
           <li>
-            <NavLink to="/" activeClassName="active">
+            <NavLink to="/" activeclassname="active">
               Home
             </NavLink>
           </li>
           <li>
-            <NavLink to="/category" activeClassName="active">
+            <NavLink to="/category" activeclassname="active">
               Categories
             </NavLink>
           </li>
           <li>
-            <NavLink to="/laporan" activeClassName="active">
+            <NavLink to="/laporan" activeclassname="active">
               Reports
             </NavLink>
           </li>
           <li>
-            <NavLink to="/login" activeClassName="active">
+            <NavLink to="/login" activeclassname="active">
               Login
             </NavLink>
           </li>
