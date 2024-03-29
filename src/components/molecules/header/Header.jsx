@@ -12,7 +12,7 @@ const Header = () => {
       <div className="flex justify-between items-center  w-[80%] jitems-center ">
         {/* icon */}
         <div className="">
-          <img src={logo} className="h-20 w-full object-cover " alt="image" />
+          <img src={logo} className="h-20 w-40 object-contain " alt="image" />
         </div>
         {/* desktop navbar */}
         <ul className=" gap-4 md:flex hidden mt-4 navbar_style font-semibold text-gray-700">
