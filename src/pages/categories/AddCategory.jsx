@@ -20,7 +20,6 @@ const AddCategory = ({ title, icon }) => {
     setModalCategoryVisible(!ModalCategoryVisible);
   };
 
-  
   const toggleHandler = () => {
     setIsChecked(!isChecked);
     setStatus(isChecked ? "false" : "true");
@@ -142,7 +141,7 @@ const AddCategory = ({ title, icon }) => {
                     onClick={onSubmitHandler}
                     type="submit"
                     className="text-white inline-flex items-center mt-12 mb-4
-                     bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg justify-center w-full text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    font-medium rounded-lg justify-center w-full text-sm px-5 py-2.5 text-center focus:ring-4 focus:outline-none   bg-cyan-600 hover:bg-cyan-500 "
                   >
                     <svg
                       className="me-1 -ms-1 w-5 h-5"

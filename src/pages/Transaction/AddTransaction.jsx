@@ -83,10 +83,10 @@ const AddTransaction = () => {
       {/* Modal toggle */}
       <button
         onClick={() => setModalVisible(!modalVisible)}
-        className="flex text-3xl justify-center items-center px-3 py-1 rounded-full bg-yellow-500 text-white   focus:ring-4  font-medium   text-center "
+        className="flex justify-center items-center rounded-full text-md bg-yellow-500 text-white focus:ring-2 font-medium text-center transition duration-300 ease-in-out  hover:bg-yellow-600 px-4 py-2 shadow-lg hover:border-transparent"
         type="button"
       >
-        +
+        <span>+</span> {/* Ganti dengan teks yang sesuai */}
       </button>
 
       {/* Main modal */}
@@ -211,7 +211,7 @@ const AddTransaction = () => {
                       <button
                         onClick={onSubmitHandler}
                         type="submit"
-                        className="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        className="text-white inline-flex items-center  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-cyan-600 hover:bg-cyan-500 "
                       >
                         <svg
                           className="me-1 -ms-1 w-5 h-5"
