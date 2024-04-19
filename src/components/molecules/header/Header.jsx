@@ -1,10 +1,10 @@
 import { NavLink } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import { BiCategory } from "react-icons/bi";
-// import { IoPersonCircleOutline } from "react-icons/io5";
+import { IoPersonCircleOutline } from "react-icons/io5";
 import AddTransaction from "../../../pages/Transaction/AddTransaction";
 import logo from "../../../assets/koin_kreatif_logo.png";
-// import { VscGraph } from "react-icons/vsc";
+import { VscGraph } from "react-icons/vsc";
 
 const Header = () => {
   return (
@@ -26,16 +26,16 @@ const Header = () => {
               Categories
             </NavLink>
           </li>
-          {/* <li>
+          <li>
             <NavLink to="/laporan" activeclassname="active">
               Reports
             </NavLink>
-          </li> */}
-          {/* <li>
+          </li>
+          <li>
             <NavLink to="/login" activeclassname="active">
               Login
             </NavLink>
-          </li> */}
+          </li>
         </ul>
       </div>
 
@@ -61,17 +61,17 @@ const Header = () => {
               <AddTransaction />
             </span>
           </li>
-          {/* <li className="text-3xl ml-12">
+          <li className="text-3xl ml-12">
             <NavLink to="/laporan">
               <VscGraph />
             </NavLink>
-          </li> */}
+          </li>
 
-          {/* <li className="text-3xl">
+          <li className="text-3xl">
             <NavLink to="/login">
               <IoPersonCircleOutline />
             </NavLink>
-          </li> */}
+          </li>
         </ul>
       </div>
     </nav>
