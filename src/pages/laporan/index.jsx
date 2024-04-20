@@ -2,7 +2,6 @@
 import { useState } from "react";
 import axios from "axios";
 import { BsPersonCircle } from "react-icons/bs";
-import Loading from "../../components/Atoms/Loading";
 import Spinner from "../../components/Atoms/spinner";
 const Response = ({ response }) => {
   return (
