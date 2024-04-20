@@ -7,6 +7,7 @@ import logo from "../../../assets/koin_kreatif_logo.png";
 import { VscGraph } from "react-icons/vsc";
 
 const Header = () => {
+  // const { param = "laporan" } = useParams();
   return (
     <nav className="  bg-[#5CE1E6] flex justify-center items-center h-20 ">
       <div className="flex justify-between items-center  w-[80%] jitems-center ">
@@ -28,7 +29,7 @@ const Header = () => {
           </li>
           <li>
             <NavLink to="/laporan" activeclassname="active">
-              Reports
+              laporan
             </NavLink>
           </li>
           <li>
@@ -40,9 +41,10 @@ const Header = () => {
       </div>
 
       {/* mobile navbar */}
+
       <div
-        className="md:hidden bg-[#5CE1E6] absolute bottom-0 left-0 right-0 m-2
-       shadow-md rounded-xl "
+        className={`md:hidden bg-[#5CE1E6] absolute bottom-0 left-0 right-0 m-2
+       shadow-md rounded-xl `}
       >
         <ul className="flex justify-around items-center h-20  ">
           <li className="text-3xl">

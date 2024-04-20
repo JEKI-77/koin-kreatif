@@ -18,7 +18,7 @@ function Routers() {
           <Route path="/:category" element={<Category />} />
           <Route path="/addtransaction" element={<AddTransaction />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/laporan" element={<Laporan />} />
+          <Route path="/laporan/:param?" element={<Laporan />} />
           <Route path="/register" element={<Register />} />
           <Route path="/editTransactions/:id" element={<EditTransaction />} />
           <Route path="/editCategory/:id" element={<EditCategory />} />

@@ -9,6 +9,7 @@ const MainApp = () => {
       <div className="flex-1 flex justify-center items-start">
         <Outlet />
       </div>
+
       <Footer />
     </div>
   );
