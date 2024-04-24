@@ -8,6 +8,7 @@ import Login from "../pages/account/Login/Login";
 import EditTransaction from "../pages/Transaction/EditTransaction";
 import Category from "../pages/categories/category";
 import EditCategory from "../pages/categories/EditCategory";
+import ChatApp from "../pages/ai/chatApp";
 
 function Routers() {
   return (
@@ -19,6 +20,7 @@ function Routers() {
           <Route path="/addtransaction" element={<AddTransaction />} />
           <Route path="/login" element={<Login />} />
           <Route path="/laporan/:param?" element={<Laporan />} />
+          <Route path="/ai" element={<ChatApp />} />
           <Route path="/register" element={<Register />} />
           <Route path="/editTransactions/:id" element={<EditTransaction />} />
           <Route path="/editCategory/:id" element={<EditCategory />} />

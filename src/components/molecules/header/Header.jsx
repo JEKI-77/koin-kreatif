@@ -33,6 +33,11 @@ const Header = () => {
             </NavLink>
           </li>
           <li>
+            <NavLink to="/ai" activeclassname="active">
+              Ai
+            </NavLink>
+          </li>
+          <li>
             <NavLink to="/login" activeclassname="active">
               Login
             </NavLink>
@@ -66,6 +71,11 @@ const Header = () => {
           <li className="text-3xl ml-12">
             <NavLink to="/laporan">
               <VscGraph />
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/ai" activeclassname="active">
+              Ai
             </NavLink>
           </li>
 
