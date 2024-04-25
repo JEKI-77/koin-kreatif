@@ -83,10 +83,11 @@ const AddTransaction = () => {
       {/* Modal toggle */}
       <button
         onClick={() => setModalVisible(!modalVisible)}
-        className="flex justify-center items-center rounded-full text-md bg-yellow-500 text-white focus:ring-2 font-medium text-center transition duration-300 ease-in-out  hover:bg-yellow-600 px-4 py-2 shadow-lg hover:border-transparent"
+        className="flex justify-center items-center rounded-full text-md bg-yellow-500 text-white focus:ring-2 text-center transition duration-300 ease-in-out hover:bg-yellow-600 shadow-lg hover:border-transparent"
         type="button"
+        style={{ width: "50px", height: "50px" }} // Added inline style for width and height
       >
-        <span>+</span> {/* Ganti dengan teks yang sesuai */}
+        <span className="text-3xl">+</span> {/* Increased font size */}
       </button>
 
       {/* Main modal */}

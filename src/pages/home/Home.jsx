@@ -8,8 +8,9 @@ import { useState } from "react";
 import { GetAllTransaction } from "../../utils/transaction";
 // import { useParams } from "react-router-dom";
 import AddTransaction from "../Transaction/AddTransaction";
+import { DrawerPicker } from "../../components/Atoms/DrawerPicker";
 // import Alert from "../../components/Atoms/Alert";
-import dayjs from "dayjs";
+// import dayjs from "dayjs";
 
 const Home = () => {
   // const { params } = useParams();
@@ -50,7 +51,7 @@ const Home = () => {
                 amount={item.amount}
                 category={item.category}
                 status={item.status}
-                date={dayjs(item.date).format("d MMM YYYY")}
+                // date={dayjs(item.date).format("d MMM YYYY")}
                 id={item.id}
                 endpoint="transactions"
                 editEnpoint="editTransactions"
@@ -62,6 +63,7 @@ const Home = () => {
         <span className=" items-center justify-end md:flex hidden">
           <AddTransaction icon="+" />
         </span>
+        <DrawerPicker />
       </div>
     </div>
   );

@@ -116,7 +116,7 @@ const ChatApp = () => {
         <div className="spotlight__wrapper">
           <input
             type="text"
-            className="spotlight__input"
+            className="spotlight__input "
             placeholder="Ask me anything..."
             disabled={loading}
             style={{

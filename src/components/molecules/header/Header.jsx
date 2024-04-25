@@ -5,9 +5,13 @@ import { IoPersonCircleOutline } from "react-icons/io5";
 import AddTransaction from "../../../pages/Transaction/AddTransaction";
 import logo from "../../../assets/koin_kreatif_logo.png";
 import { VscGraph } from "react-icons/vsc";
+// import { RiWechatChannelsLine } from "react-icons/ri";
+// import { IoIosArrowBack } from "react-icons/io";
+// import { useState } from "react";
 
 const Header = () => {
   // const { param = "laporan" } = useParams();
+  // const [show, setShow] = useState(false);
   return (
     <nav className="  bg-[#5CE1E6] flex justify-center items-center h-20 ">
       <div className="flex justify-between items-center  w-[80%] jitems-center ">
@@ -73,11 +77,25 @@ const Header = () => {
               <VscGraph />
             </NavLink>
           </li>
-          <li>
+
+          {/* <li
+            onClick={() => setShow(!show)}
+            className="absolute bottom-0 right-0 mb-20 text-3xl  text-red-400   p-2  rounded-full"
+          ></li> */}
+
+          {/* side bar */}
+          {/* <li
+            className={`${
+              show
+                ? "hidden"
+                : "absolute bottom-0 right-0 mb-24 mr-4 m-4 text-3xl  text-red-400 bg-slate-100 shadow-md  p-2  rounded-full"
+            }`}
+          >
             <NavLink to="/ai" activeclassname="active">
-              Ai
+              <RiWechatChannelsLine />
             </NavLink>
-          </li>
+          </li> */}
+          {/* --------- */}
 
           <li className="text-3xl">
             <NavLink to="/login">
