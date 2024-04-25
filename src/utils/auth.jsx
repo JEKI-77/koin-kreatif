@@ -3,9 +3,9 @@ import axios from "axios";
 // const url = "https://api-koin-kreatif.cloud";
 const url = "http://localhost:4000";
 
-export const Signup = async (data) => {
+export const Signup = (data) => {
   try {
-    const response = await axios.post(`${url}/auth/signup`, data);
+    const response = axios.post(`${url}/auth/signup`, data);
     return response;
   } catch (error) {
     console.error("Error:", error);
@@ -13,9 +13,9 @@ export const Signup = async (data) => {
   }
 };
 
-export const SignIn = async (data) => {
+export const SignIn = (data) => {
   try {
-    const response = await axios.post(`${url}/auth/login`, data);
+    const response = axios.post(`${url}/auth/login`, data);
     return response;
   } catch (error) {
     console.error("Error:", error);

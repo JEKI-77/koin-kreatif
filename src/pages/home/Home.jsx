@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // import DatePicker from "react-horizontal-datepicker";
 // import ReactDatePicker from "react-datepicker";
 import { useEffect } from "react";
@@ -8,12 +9,15 @@ import { useState } from "react";
 import { GetAllTransaction } from "../../utils/transaction";
 // import { useParams } from "react-router-dom";
 import AddTransaction from "../Transaction/AddTransaction";
+import Cookies from "universal-cookie";
 // import { DrawerPicker } from "../../components/Atoms/DrawerPicker";
 // import Alert from "../../components/Atoms/Alert";
 // import dayjs from "dayjs";
 
 const Home = () => {
   // const { params } = useParams();
+  const cookies = new Cookies();
+  const [stateName, setStateName] = useState("");
 
   const [data, setData] = useState([]);
   const fetchdata = async () => {
@@ -26,11 +30,14 @@ const Home = () => {
   };
 
   useEffect(() => {
+    setStateName(cookies.get("userName"));
     fetchdata();
   }, []);
 
   return (
     <div className="w-[90%] md:w-[40%]">
+      <div className="mt-4">{stateName}</div>
+
       <div className=" mt-4 flex justify-center items-center">
         {/* <ReactDatePicker
           selected={startDate}

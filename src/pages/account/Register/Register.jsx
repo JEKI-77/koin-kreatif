@@ -18,9 +18,10 @@ const Register = () => {
   };
 
   // Fungsi untuk menangani pengiriman data Register
-  const handleRegister = async () => {
+  const handleRegister = async (e) => {
+    e.preventDefault();
     try {
-      const response = Signup(data);
+      const response = await Signup(data);
       console.log(response);
       navigateTo("/login");
       alert("Registrasi berhasil");
