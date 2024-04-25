@@ -1,21 +1,34 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { SignIn } from "../../../utils/auth";
 
 const Login = () => {
   const navigateTo = useNavigate();
 
-  // State untuk menyimpan nilai email dan password
+  // State untuk menyimpan nilai userName dan password
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const data = {
+    email,
+    password,
+  };
+
   // Fungsi untuk menangani pengiriman data login
   const handleLogin = () => {
-    // Lakukan validasi login atau pengiriman data ke server di sini
-    // Setelah login berhasil, Anda dapat menavigasi ke halaman beranda atau halaman lain yang sesuai
-    console.log("Email:", email);
-    console.log("Password:", password);
-    // Contoh: Jika login berhasil, navigasikan ke halaman beranda
-    // navigateTo("/");
+    // Memeriksa apakah email dan password tidak kosong
+    if (email && password) {
+      try {
+        SignIn(data);
+        navigateTo("/");
+        alert("Login berhasil");
+      } catch (error) {
+        console.log("Error:", error);
+        alert("Gagal melakukan login. Silakan coba lagi.");
+      }
+    } else {
+      alert("Kolom input masih kosong");
+    }
   };
 
   return (
@@ -28,7 +41,7 @@ const Login = () => {
                 htmlFor="email"
                 className="block mb-2 text-sm font-medium ml-1 text-gray-600  "
               >
-                Insert your Email
+                Insert your email
               </label>
               <input
                 value={email}
@@ -61,7 +74,6 @@ const Login = () => {
             <div className=" flex justify-center items-center">
               <button
                 onClick={handleLogin}
-                type="submit"
                 className="text-gray-800 text-xl px-8  hover:bg-teal-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg w-1/2  sm:w-auto  py-2.5 text-center dark:bg-[#5CE1E6]  "
               >
                 Login

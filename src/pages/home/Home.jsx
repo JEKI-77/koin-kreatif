@@ -8,7 +8,7 @@ import { useState } from "react";
 import { GetAllTransaction } from "../../utils/transaction";
 // import { useParams } from "react-router-dom";
 import AddTransaction from "../Transaction/AddTransaction";
-import { DrawerPicker } from "../../components/Atoms/DrawerPicker";
+// import { DrawerPicker } from "../../components/Atoms/DrawerPicker";
 // import Alert from "../../components/Atoms/Alert";
 // import dayjs from "dayjs";
 
@@ -63,7 +63,7 @@ const Home = () => {
         <span className=" items-center justify-end md:flex hidden">
           <AddTransaction icon="+" />
         </span>
-        <DrawerPicker />
+        {/* <DrawerPicker /> */}
       </div>
     </div>
   );

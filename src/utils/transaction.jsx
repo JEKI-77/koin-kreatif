@@ -12,6 +12,7 @@ export const PostTransaction = (data) => {
     // Logika untuk menangani kesalahan
   }
 };
+
 export const UpdateTransaction = (id, data) => {
   try {
     axios.put(`${url}/v1/transactions/${id}`, data);

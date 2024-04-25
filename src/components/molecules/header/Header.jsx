@@ -5,7 +5,7 @@ import { IoPersonCircleOutline } from "react-icons/io5";
 import AddTransaction from "../../../pages/Transaction/AddTransaction";
 import logo from "../../../assets/koin_kreatif_logo.png";
 import { VscGraph } from "react-icons/vsc";
-// import { RiWechatChannelsLine } from "react-icons/ri";
+import { RiWechatChannelsLine } from "react-icons/ri";
 // import { IoIosArrowBack } from "react-icons/io";
 // import { useState } from "react";
 
@@ -84,17 +84,15 @@ const Header = () => {
           ></li> */}
 
           {/* side bar */}
-          {/* <li
-            className={`${
-              show
-                ? "hidden"
-                : "absolute bottom-0 right-0 mb-24 mr-4 m-4 text-3xl  text-red-400 bg-slate-100 shadow-md  p-2  rounded-full"
-            }`}
+          <li
+            className={
+              "absolute bottom-0 right-0 mb-24 mr-4 m-4 text-3xl  text-red-400 bg-slate-100 shadow-md  p-2  rounded-full"
+            }
           >
             <NavLink to="/ai" activeclassname="active">
               <RiWechatChannelsLine />
             </NavLink>
-          </li> */}
+          </li>
           {/* --------- */}
 
           <li className="text-3xl">

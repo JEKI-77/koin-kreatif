@@ -1,5 +1,3 @@
-"use client";
-
 import { Button, Drawer, Sidebar, TextInput } from "flowbite-react";
 import { useState } from "react";
 import {
