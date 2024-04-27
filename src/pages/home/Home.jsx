@@ -16,13 +16,14 @@ import Cookies from "universal-cookie";
 
 const Home = () => {
   // const { params } = useParams();
-  const cookies = new Cookies();
   const [stateName, setStateName] = useState("");
-
   const [data, setData] = useState([]);
+  const cookies = new Cookies();
+  const token = cookies.get("token");
+
   const fetchdata = async () => {
     try {
-      const response = await GetAllTransaction();
+      const response = await GetAllTransaction(token);
       setData(response.data);
     } catch (error) {
       console.log(error);
@@ -36,7 +37,7 @@ const Home = () => {
 
   return (
     <div className="w-[90%] md:w-[40%]">
-      <div className="mt-4">{stateName}</div>
+      <div className="mt-4">Hi {stateName}</div>
 
       <div className=" mt-4 flex justify-center items-center">
         {/* <ReactDatePicker

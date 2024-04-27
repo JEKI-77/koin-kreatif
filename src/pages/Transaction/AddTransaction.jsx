@@ -6,6 +6,7 @@ import Alert from "../../components/Atoms/Alert";
 import Loading from "../../components/Atoms/Loading";
 import { GetAllCategory } from "../../utils/category";
 import { useEffect } from "react";
+import Cookies from "universal-cookie";
 
 const AddTransaction = () => {
   // State untuk mengontrol visibilitas modal
@@ -18,6 +19,8 @@ const AddTransaction = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(false);
   const [categoryData, setCategoryData] = useState([]);
+  const cookies = new Cookies();
+  const token = cookies.get("token");
 
   const currentDate = new Date(); // Mengambil tanggal saat ini
   const formattedDate = currentDate.toISOString().split("T")[0];
@@ -43,7 +46,7 @@ const AddTransaction = () => {
 
       setLoading(true);
       try {
-        await PostTransaction(data);
+        await PostTransaction(data, token);
         setAmount("");
         setCategory("");
         setDate("");
@@ -70,12 +73,13 @@ const AddTransaction = () => {
   };
 
   const fetchCategory = async () => {
-    const response = await GetAllCategory();
+    const response = await GetAllCategory(token);
     setCategoryData(response.data);
   };
 
   useEffect(() => {
     fetchCategory();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -14,7 +14,6 @@ const Login = () => {
   const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
-    // Cek apakah token tersedia di cookies
     const token = cookies.get("token");
     if (token) {
       setIsLogin(true); // Jika token tersedia, set status login menjadi true
@@ -30,11 +29,15 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     if (email && password) {
+      // const getToken = cookies.get("token");
+      // console.log(getToken);
       try {
         const response = await SignIn(data);
-        console.log(response);
-        cookies.set("token", response.data.data.token);
-        cookies.set("userName", response.data.data.userName);
+        // console.log(response);
+        const setToken = response.data.data.token;
+        const setUserName = response.data.data.userName;
+        cookies.set("token", setToken);
+        cookies.set("userName", setUserName);
         setIsLogin(true); // Set status login ke true
         navigateTo("/");
         alert("Login berhasil");
@@ -91,13 +94,13 @@ const Login = () => {
                 type="password"
                 id="password"
                 placeholder="*****"
+                autoComplete="current-password"
                 className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required
               />
             </div>
 
             <div className="flex justify-center items-center">
-              <div>{email}</div>
               {isLogin ? (
                 <button
                   onClick={handleLogout}

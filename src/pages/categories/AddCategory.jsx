@@ -2,6 +2,7 @@ import { useState } from "react";
 import Toggle from "../../components/Atoms/toggle";
 import { PostCategory } from "../../utils/category";
 import Alert from "../../components/Atoms/Alert";
+import Cookies from "universal-cookie";
 
 // eslint-disable-next-line react/prop-types
 const AddCategory = ({ title, icon }) => {
@@ -14,6 +15,8 @@ const AddCategory = ({ title, icon }) => {
   const [category, setCategory] = useState("");
   const [showMessage, setshowMessage] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+  const cookies = new Cookies();
+  const token = cookies.get("token");
 
   // Fungsi untuk menampilkan atau menyembunyikan ModalCategory
   const toggleModalCategory = () => {
@@ -36,7 +39,7 @@ const AddCategory = ({ title, icon }) => {
 
     if (category !== "") {
       try {
-        await PostCategory(data);
+        await PostCategory(data, token);
         setshowMessage(true);
         setCategory("");
         setshowMessage(true);

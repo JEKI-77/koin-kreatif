@@ -1,11 +1,14 @@
 import { useState } from "react";
 import Toggle from "../../components/Atoms/toggle";
 import { PostTransaction } from "../../utils/transaction";
+import Cookies from "universal-cookie";
 const AddTransaction = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
   // const [date, setDate] = useState("");
+  const cookies = new Cookies();
+  const token = cookies.get("token");
 
   const toggleHandler = () => {
     setIsChecked(!isChecked);
@@ -20,7 +23,7 @@ const AddTransaction = () => {
       status: isChecked,
     };
     try {
-      await PostTransaction(data);
+      await PostTransaction(data, token);
       alert("create success");
     } catch (error) {
       console.log(error);

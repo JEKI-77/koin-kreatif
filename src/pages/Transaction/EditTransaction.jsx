@@ -7,6 +7,7 @@ import Alert from "../../components/Atoms/Alert";
 import { FaEdit } from "react-icons/fa";
 import Loading from "../../components/Atoms/Loading";
 import { GetAllCategory } from "../../utils/category";
+import Cookies from "universal-cookie";
 
 const EditTransaction = ({ id }) => {
   // State untuk mengontrol visibilitas EditModal
@@ -19,6 +20,8 @@ const EditTransaction = ({ id }) => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(false);
   const [categoryData, setCategoryData] = useState([]);
+  const cookies = new Cookies();
+  const token = cookies.get("token");
 
   const currentDate = new Date(); // Mengambil tanggal saat ini
   const formattedDate = currentDate.toISOString().split("T")[0];
@@ -31,7 +34,7 @@ const EditTransaction = ({ id }) => {
   // get transaction by id
   const getById = async () => {
     try {
-      const response = await GetbyIdTransaction(id);
+      const response = await GetbyIdTransaction(id, token);
       // setStatus(response.data.status);
       setIsChecked(response.data.status); // Set isChecked based on status from data
       setAmount(response.data.amount);
@@ -56,7 +59,7 @@ const EditTransaction = ({ id }) => {
     };
     setLoading(true);
     try {
-      await UpdateTransaction(id, data);
+      await UpdateTransaction(id, data, token);
       // setAmount("");
       // setCategory("");
       // setDate("");
@@ -78,7 +81,7 @@ const EditTransaction = ({ id }) => {
 
   //get data category
   const fetchCategory = async () => {
-    const response = await GetAllCategory();
+    const response = await GetAllCategory(token);
     setCategoryData(response.data);
   };
 

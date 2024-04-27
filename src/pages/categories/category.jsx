@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import CardTransaction from "../../components/Atoms/CardTransaction";
 // import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -6,15 +7,18 @@ import { useEffect } from "react";
 import ModalCategory from "./AddCategory";
 import { useParams } from "react-router-dom";
 import { GetAllCategory } from "../../utils/category";
+import Cookies from "universal-cookie";
 // import axios from "axios";
 
 const Category = () => {
   const { category } = useParams();
   const [data, setData] = useState([]);
+  const cookies = new Cookies();
+  const token = cookies.get("token");
 
   const fetchdata = async () => {
     try {
-      const response = await GetAllCategory();
+      const response = await GetAllCategory(token);
       setData(response.data);
     } catch (error) {
       console.log(error);

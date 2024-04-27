@@ -4,9 +4,12 @@ import { useState } from "react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import { DeleteTransaction } from "../../utils/transaction";
+import Cookies from "universal-cookie";
 
 function DeleteModal({ endpoint, id }) {
   const [openModal, setOpenModal] = useState(false);
+  const cookie = new Cookies();
+  const token = cookie.get("token");
 
   return (
     <>
@@ -30,7 +33,7 @@ function DeleteModal({ endpoint, id }) {
                   <button
                     className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
                     onClick={() => {
-                      DeleteTransaction(endpoint, id)
+                      DeleteTransaction(endpoint, id, token)
                         // eslint-disable-next-line no-unused-vars
                         .then((res) => {
                           setOpenModal(false);

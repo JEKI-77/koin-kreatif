@@ -13,9 +13,11 @@ export const Signup = (data) => {
   }
 };
 
-export const SignIn = (data) => {
+export const SignIn = async (data) => {
   try {
-    const response = axios.post(`${url}/auth/login`, data);
+    // Memasukkan token ke dalam header permintaan
+    const response = await axios.post(`${url}/auth/login`, data);
+
     return response;
   } catch (error) {
     console.error("Error:", error);

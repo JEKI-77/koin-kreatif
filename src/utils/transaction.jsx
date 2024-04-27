@@ -3,9 +3,13 @@ import axios from "axios";
 // const url = "https://api-koin-kreatif.cloud";
 const url = "http://localhost:4000";
 
-export const PostTransaction = (data) => {
+export const PostTransaction = (data, token) => {
   try {
-    axios.post(`${url}/v1/transactions`, data);
+    axios.post(`${url}/v1/transactions`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   } catch (error) {
     console.error(error);
 
@@ -13,9 +17,13 @@ export const PostTransaction = (data) => {
   }
 };
 
-export const UpdateTransaction = (id, data) => {
+export const UpdateTransaction = (id, data, token) => {
   try {
-    axios.put(`${url}/v1/transactions/${id}`, data);
+    axios.put(`${url}/v1/transactions/${id}`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   } catch (error) {
     console.error(error);
 
@@ -23,27 +31,39 @@ export const UpdateTransaction = (id, data) => {
   }
 };
 
-export const GetAllTransaction = async () => {
+export const GetAllTransaction = async (token) => {
   try {
-    const data = await axios.get(`${url}/v1/transactions`);
+    const data = await axios.get(`${url}/v1/transactions`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return data;
   } catch (error) {
     console.error(error);
   }
 };
 
-export const GetbyIdTransaction = async (id) => {
+export const GetbyIdTransaction = async (id, token) => {
   try {
-    const data = await axios.get(`${url}/v1/transactions/${id}`);
+    const data = await axios.get(`${url}/v1/transactions/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return data;
   } catch (error) {
     console.error(error);
   }
 };
 
-export const DeleteTransaction = async (endpoint, id) => {
+export const DeleteTransaction = async (endpoint, id, token) => {
   try {
-    const data = await axios.delete(`${url}/v1/${endpoint}/${id}`);
+    const data = await axios.delete(`${url}/v1/${endpoint}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return data;
   } catch (error) {
     console.error(error);

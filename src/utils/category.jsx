@@ -3,18 +3,26 @@ import axios from "axios";
 // const url = "https://api-koin-kreatif.cloud";
 const url = "http://localhost:4000";
 
-export const PostCategory = (data) => {
+export const PostCategory = (data, token) => {
   try {
-    axios.post(`${url}/v1/category`, data);
+    axios.post(`${url}/v1/category`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   } catch (error) {
     console.error(error);
 
     // Logika untuk menangani kesalahan
   }
 };
-export const UpdateCategory = (id, data) => {
+export const UpdateCategory = (id, data, token) => {
   try {
-    axios.put(`${url}/v1/category/${id}`, data);
+    axios.put(`${url}/v1/category/${id}`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   } catch (error) {
     console.error(error);
 
@@ -22,27 +30,39 @@ export const UpdateCategory = (id, data) => {
   }
 };
 
-export const GetAllCategory = async () => {
+export const GetAllCategory = async (token) => {
   try {
-    const data = await axios.get(`${url}/v1/category`);
+    const data = await axios.get(`${url}/v1/category`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return data;
   } catch (error) {
     console.error(error);
   }
 };
 
-export const GetbyIdCategory = async (id) => {
+export const GetbyIdCategory = async (id, token) => {
   try {
-    const data = await axios.get(`${url}/v1/category/${id}`);
+    const data = await axios.get(`${url}/v1/category/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return data;
   } catch (error) {
     console.error(error);
   }
 };
 
-export const DeleteCategory = async (endpoint, id) => {
+export const DeleteCategory = async (endpoint, id, token) => {
   try {
-    const data = await axios.delete(`${url}/v1/${endpoint}/${id}`);
+    const data = await axios.delete(`${url}/v1/${endpoint}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return data;
   } catch (error) {
     console.error(error);

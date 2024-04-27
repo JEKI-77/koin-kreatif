@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Signup } from "../../../utils/auth";
 
@@ -9,6 +9,20 @@ const Register = () => {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const inputRefs = {
+    userName: useRef(null),
+    email: useRef(null),
+    password: useRef(null),
+  };
+
+  // Fungsi untuk memindahkan fokus ke input berikutnya saat tombol Enter ditekan
+  const handleKeyPress = (e, nextInputRef) => {
+    if (e.key === "Enter") {
+      e.preventDefault(); // Menghindari submit form secara default
+      nextInputRef.current.focus(); // Pindahkan fokus ke input berikutnya
+    }
+  };
 
   const data = {
     userName,
@@ -44,6 +58,8 @@ const Register = () => {
                 Create your Name
               </label>
               <input
+                ref={inputRefs.userName}
+                onKeyDown={(e) => handleKeyPress(e, inputRefs.email)}
                 value={userName}
                 onChange={(e) => setUserName(e.target.value)}
                 type="text"
@@ -83,8 +99,9 @@ const Register = () => {
                 type="password"
                 id="password"
                 placeholder="*****"
-                className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required
+                autoComplete="current-password"
+                className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
 

@@ -4,6 +4,7 @@ import Alert from "../../components/Atoms/Alert";
 import { GetbyIdCategory, UpdateCategory } from "../../utils/category";
 import { FaEdit } from "react-icons/fa";
 import Loading from "../../components/Atoms/Loading";
+import Cookies from "universal-cookie";
 
 // eslint-disable-next-line react/prop-types
 const EditCategory = ({ title, id }) => {
@@ -15,6 +16,8 @@ const EditCategory = ({ title, id }) => {
   const [category, setCategory] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(false);
+  const cookies = new Cookies();
+  const token = cookies.get("token");
 
   // Fungsi untuk menampilkan atau menyembunyikan ModalCategory
   const toggleModalCategory = () => {
@@ -27,7 +30,7 @@ const EditCategory = ({ title, id }) => {
 
   const getById = async () => {
     try {
-      const response = await GetbyIdCategory(id);
+      const response = await GetbyIdCategory(id, token);
       setIsChecked(response.data.status); // Set isChecked based on status from data
       setCategory(response.data.category);
     } catch (error) {
@@ -50,7 +53,7 @@ const EditCategory = ({ title, id }) => {
     };
     setLoading(true);
     try {
-      await UpdateCategory(id, data);
+      await UpdateCategory(id, data, token);
 
       setTimeout(() => {
         setLoading(false);

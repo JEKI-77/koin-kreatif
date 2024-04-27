@@ -4,13 +4,16 @@ import { useEffect } from "react";
 import { IoMdDownload } from "react-icons/io";
 import { MdUpload } from "react-icons/md";
 import { GetAllTransaction } from "../../utils/transaction";
+import Cookies from "universal-cookie";
 
 const Card = () => {
   const [data, setData] = useState([]);
+  const cookies = new Cookies();
+  const token = cookies.get("token");
 
   const fetchdata = async () => {
     try {
-      const response = await GetAllTransaction();
+      const response = await GetAllTransaction(token);
       setData(response.data);
     } catch (error) {
       console.log(error);
