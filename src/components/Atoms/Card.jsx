@@ -5,16 +5,18 @@ import { IoMdDownload } from "react-icons/io";
 import { MdUpload } from "react-icons/md";
 import { GetAllTransaction } from "../../utils/transaction";
 import Cookies from "universal-cookie";
+// import dayjs from "dayjs";
 
 const Card = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState("");
+  console.log("data", data);
   const cookies = new Cookies();
   const token = cookies.get("token");
 
   const fetchdata = async () => {
     try {
       const response = await GetAllTransaction(token);
-      setData(response.data);
+      setData(response.data.transaction);
     } catch (error) {
       console.log(error);
 

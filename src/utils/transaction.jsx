@@ -31,13 +31,22 @@ export const UpdateTransaction = (id, data, token) => {
   }
 };
 
-export const GetAllTransaction = async (token) => {
+export const GetAllTransaction = async (
+  token,
+  startDate = "",
+  endDate = "",
+  categories = ""
+) => {
   try {
-    const data = await axios.get(`${url}/v1/transactions`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const data = await axios.get(
+      `${url}/v1/transactions?startDate=${startDate}&endDate=${endDate}&category=${categories}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(data);
     return data;
   } catch (error) {
     console.error(error);

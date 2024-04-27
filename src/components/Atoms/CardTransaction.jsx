@@ -13,10 +13,10 @@ const CardTransaction = ({
   amount,
   category,
   status,
-  date,
   id,
   endpoint,
   param,
+  date,
 }) => {
   return (
     <div className="bg-slate-100 py-2 shadow-[0_3px_10px_rgb(0,0,0,0.2)] flex justify-between rounded-md px-4 mx-1 ">

@@ -2,7 +2,7 @@
 // import DatePicker from "react-horizontal-datepicker";
 // import ReactDatePicker from "react-datepicker";
 import { useEffect } from "react";
-import Card from "../../components/Atoms/Card";
+// import Card from "../../components/Atoms/Card";
 import CardTransaction from "../../components/Atoms/CardTransaction";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
@@ -17,14 +17,15 @@ import Cookies from "universal-cookie";
 const Home = () => {
   // const { params } = useParams();
   const [stateName, setStateName] = useState("");
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
+  console.log("data home", data);
   const cookies = new Cookies();
   const token = cookies.get("token");
 
   const fetchdata = async () => {
     try {
       const response = await GetAllTransaction(token);
-      setData(response.data);
+      setData(response.data.transactions);
     } catch (error) {
       console.log(error);
     }
@@ -46,7 +47,7 @@ const Home = () => {
           scrollableYearDropdown // membuat dropdown tahun menjadi scrollable
         /> */}
       </div>
-      <Card />
+      {/* <Card /> */}
 
       <div
         className="
