@@ -19,7 +19,8 @@ const Laporan = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [category, setCategory] = useState("");
-  console.log("category selected", category);
+  const [status, setStatus] = useState("");
+  console.log("status", status);
   const [categoryData, setCategoryData] = useState([]);
 
   const cookies = new Cookies();
@@ -33,7 +34,8 @@ const Laporan = () => {
         token,
         startDate,
         endDate,
-        category
+        category,
+        status
       );
       setData(response.data.transactions);
     } catch (error) {
@@ -43,7 +45,7 @@ const Laporan = () => {
 
   useEffect(() => {
     fetchdata();
-  }, [startDate, endDate, category]);
+  }, [startDate, endDate, category, status]);
 
   const fetchCategory = async () => {
     const response = await GetAllCategory(token);
@@ -56,31 +58,24 @@ const Laporan = () => {
 
   return (
     <div className="w-[90%] md:w-[40%] shadow-standard mt-10 ">
-      <div className="flex gap-8 mt-12 mb-8 justify-evenly items-center   ">
-        <div>
-          <input
-            name="dfdf"
-            type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-          />
-        </div>
-
-        <div>
-          <input
-            type="date"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-          />
-        </div>
+      <div className="flex gap-8 md:mt-12 justify-evenly items-center mb-8   ">
+        <input
+          type="date"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+        />
+        <input
+          type="date"
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
+        />
 
         {/* category */}
-
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
           id="category"
-          className="p-1 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52 "
+          className="p-1  shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52 "
         >
           <option value="">Select category</option>
           {categoryData.map((info, index) => (
@@ -89,7 +84,20 @@ const Laporan = () => {
             </option>
           ))}
         </select>
+
+        {/* status */}
+        <select
+          value={status}
+          onChange={(e) => setStatus(e.target.value)}
+          id="status"
+          className="p-1  shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52 "
+        >
+          <option value="">Status</option>
+          <option value={true}>Incame</option>
+          <option value={false}>Expense</option>
+        </select>
       </div>
+
       <Table data={data} />
     </div>
   );

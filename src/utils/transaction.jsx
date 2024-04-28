@@ -35,11 +35,12 @@ export const GetAllTransaction = async (
   token,
   startDate = "",
   endDate = "",
-  categories = ""
+  categories = "",
+  status = ""
 ) => {
   try {
     const data = await axios.get(
-      `${url}/v1/transactions?startDate=${startDate}&endDate=${endDate}&category=${categories}`,
+      `${url}/v1/transactions?startDate=${startDate}&endDate=${endDate}&category=${categories}&status=${status}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

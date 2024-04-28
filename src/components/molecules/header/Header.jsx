@@ -28,7 +28,7 @@ const Header = () => {
           </li>
           <li>
             <NavLink to="/category" activeclassname="active">
-              Categories
+              Categories  
             </NavLink>
           </li>
           <li>
@@ -53,7 +53,7 @@ const Header = () => {
 
       <div
         className={`md:hidden bg-[#5CE1E6] absolute bottom-0 left-0 right-0 m-2
-       shadow-md rounded-xl `}
+       shadow-md rounded-xl z-10 `}
       >
         <ul className="flex justify-around items-center h-20  ">
           <li className="text-3xl">

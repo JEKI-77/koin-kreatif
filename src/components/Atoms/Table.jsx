@@ -13,7 +13,7 @@ function Table({ data }) {
             <th>Category</th>
             <th>Amount</th>
             <th>Date</th>
-            <th>Status</th>
+            <th className="md:flex hidden">Status</th>
           </tr>
         </thead>
         <tbody>
@@ -26,10 +26,12 @@ function Table({ data }) {
                 <td>{dayjs(item.date).format("D MMM YYYY")}</td>
                 <td
                   className={`${
-                    item.status == true ? "text-green-700" : "text-red-700"
-                  }`}
+                    item.status == true
+                      ? "text-green-700 font-semibold"
+                      : "text-red-700 font-semibold"
+                  } md:flex hidden`}
                 >
-                  {item.status == true ? "incame" : "expense"}
+                  {item.status == true ? "Incame" : "Expense"}
                 </td>
               </tr>
             ))}
