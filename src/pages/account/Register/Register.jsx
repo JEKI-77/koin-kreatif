@@ -46,8 +46,8 @@ const Register = () => {
   };
 
   return (
-    <div className="max-h-full  justify-center items-center  flex w-full h-full bg-gray-100   ">
-      <div className="flex flex-col gap-8 w-full md:w-[50%]  md:px-40 py-8  m-4 mb-32 ">
+    <div className="max-h-full  justify-center items-center  flex w-full h-full   ">
+      <div className="flex flex-col gap-8 w-full md:w-[70%]  md:px-40 py-8  m-4 mb-32 ">
         <div className="w-full ">
           <form className="w-full ">
             <div className="mb-5">
@@ -55,7 +55,7 @@ const Register = () => {
                 htmlFor="email"
                 className="block mb-2 text-sm font-medium ml-1 text-gray-600 "
               >
-                Create your Name
+                Name
               </label>
               <input
                 ref={inputRefs.userName}
@@ -74,7 +74,7 @@ const Register = () => {
                 htmlFor="email"
                 className="block mb-2 text-sm font-medium ml-1 text-gray-600 "
               >
-                Create your Email
+                Email
               </label>
               <input
                 value={email}
@@ -91,7 +91,7 @@ const Register = () => {
                 htmlFor="password"
                 className="block mb-2 text-sm font-medium ml-1 text-gray-600 "
               >
-                Create your Password
+                Password
               </label>
               <input
                 value={password}
@@ -108,7 +108,7 @@ const Register = () => {
             <div className=" flex justify-center items-center">
               <button
                 onClick={handleRegister}
-                className="text-gray-800 text-xl px-8  hover:bg-teal-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg w-1/2  sm:w-auto  py-2.5 text-center dark:bg-[#5CE1E6]  "
+                className="text-white text-xl px-8   focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg w-1/2  sm:w-auto  py-2.5 text-center dark:bg-[#eda363]  "
               >
                 Register
               </button>

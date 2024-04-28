@@ -57,8 +57,8 @@ const Laporan = () => {
   }, []);
 
   return (
-    <div className="w-[90%] md:w-[40%] shadow-standard mt-10 ">
-      <div className="flex gap-8 md:mt-12 justify-evenly items-center mb-8   ">
+    <div className="w-[90%] md:w-[70%] shadow-standard mt-10  ">
+      <div className="flex flex-col md:flex-row md:gap-8 gap-4 md:mt-12 justify-evenly md:items-center mb-8 mx-4  ">
         <input
           type="date"
           value={startDate}

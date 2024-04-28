@@ -5,7 +5,6 @@ import { IoPersonCircleOutline } from "react-icons/io5";
 import AddTransaction from "../../../pages/Transaction/AddTransaction";
 import logo from "../../../assets/koin_kreatif_logo.png";
 import { VscGraph } from "react-icons/vsc";
-import { RiWechatChannelsLine } from "react-icons/ri";
 // import { IoIosArrowBack } from "react-icons/io";
 // import { useState } from "react";
 
@@ -13,14 +12,14 @@ const Header = () => {
   // const { param = "laporan" } = useParams();
   // const [show, setShow] = useState(false);
   return (
-    <nav className="  bg-[#5CE1E6] flex justify-center items-center h-20 ">
+    <nav className="  bg-[#2c628e] flex justify-center items-center h-20 ">
       <div className="flex justify-between items-center  w-[80%] jitems-center ">
         {/* icon */}
         <div className="">
           <img src={logo} className="h-20 w-40 object-contain " alt="image" />
         </div>
         {/* desktop navbar */}
-        <ul className=" gap-4 md:flex hidden mt-4 navbar_style font-semibold text-gray-700">
+        <ul className=" gap-4 md:flex hidden mt-4 navbar_style font-semibold text-[#f5f5f5]">
           <li>
             <NavLink to="/" activeclassname="active">
               Home
@@ -28,12 +27,12 @@ const Header = () => {
           </li>
           <li>
             <NavLink to="/category" activeclassname="active">
-              Categories  
+              Kategori
             </NavLink>
           </li>
           <li>
             <NavLink to="/laporan" activeclassname="active">
-              laporan
+              Laporan
             </NavLink>
           </li>
           <li>
@@ -52,7 +51,7 @@ const Header = () => {
       {/* mobile navbar */}
 
       <div
-        className={`md:hidden bg-[#5CE1E6] absolute bottom-0 left-0 right-0 m-2
+        className={`md:hidden bg-[#2c628e] text-gray-200 absolute bottom-0 left-0 right-0 m-2
        shadow-md rounded-xl z-10 `}
       >
         <ul className="flex justify-around items-center h-20  ">
@@ -77,23 +76,6 @@ const Header = () => {
               <VscGraph />
             </NavLink>
           </li>
-
-          {/* <li
-            onClick={() => setShow(!show)}
-            className="absolute bottom-0 right-0 mb-20 text-3xl  text-red-400   p-2  rounded-full"
-          ></li> */}
-
-          {/* side bar */}
-          <li
-            className={
-              "absolute bottom-0 right-0 mb-24 mr-4 m-4 text-3xl  text-red-400 bg-slate-100 shadow-md  p-2  rounded-full"
-            }
-          >
-            <NavLink to="/ai" activeclassname="active">
-              <RiWechatChannelsLine />
-            </NavLink>
-          </li>
-          {/* --------- */}
 
           <li className="text-3xl">
             <NavLink to="/login">

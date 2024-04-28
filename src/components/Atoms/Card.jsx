@@ -16,7 +16,7 @@ const Card = () => {
   const fetchdata = async () => {
     try {
       const response = await GetAllTransaction(token);
-      setData(response.data.transaction);
+      setData(response.data.transactions);
     } catch (error) {
       console.log(error);
 
@@ -30,22 +30,31 @@ const Card = () => {
 
   // Fungsi untuk menjumlahkan nilai amount berdasarkan status true
   function sumIncame() {
-    return data.reduce((total, transaction) => {
-      if (transaction.status) {
-        total += parseFloat(transaction.amount.replace(/\./g, ""));
-      }
-      return total;
-    }, 0);
+    if (Array.isArray(data)) {
+      return data.reduce((total, transaction) => {
+        if (transaction.amount && transaction.status === true) {
+          return total + parseFloat(transaction.amount.replace(/\./g, ""));
+        } else {
+          return total;
+        }
+      }, 0);
+    } else {
+      return 0;
+    }
   }
 
   // Fungsi untuk menjumlahkan nilai amount berdasarkan status false
   function sumExpense() {
-    return data.reduce((total, transaction) => {
-      if (!transaction.status) {
-        total += parseFloat(transaction.amount.replace(/\./g, ""));
-      }
-      return total;
-    }, 0);
+    if (Array.isArray(data)) {
+      return data.reduce((total, transaction) => {
+        if (transaction.amount && transaction.status === false) {
+          total += parseFloat(transaction.amount.replace(/\./g, ""));
+        }
+        return total;
+      }, 0);
+    } else {
+      return 0;
+    }
   }
 
   function sum() {
@@ -57,7 +66,7 @@ const Card = () => {
 
   return (
     <>
-      <div className="bg-[#a9ccd7] h-20 shadow-md  items-center flex justify-around rounded-md px-4 ">
+      <div className="bg-[#eda363]  h-20 shadow-md  items-center flex justify-around rounded-md px-4 ">
         <div className="flex gap-4">
           <div className="flex justify-center items-center">
             <span className="text-green-600 text-2xl">

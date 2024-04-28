@@ -60,8 +60,8 @@ const Login = () => {
   };
 
   return (
-    <div className="justify-center flex w-full h-full bg-gray-100">
-      <div className="flex flex-col gap-8 w-full md:w-[50%] md:px-40 py-20 m-4 bg-gray-100">
+    <div className="justify-center flex w-full h-full ">
+      <div className="flex flex-col gap-8 w-full md:w-[70%] md:px-40 py-20 m-4">
         <div className="w-full">
           <form className="w-full">
             <div className="mb-5">
@@ -104,14 +104,14 @@ const Login = () => {
               {isLogin ? (
                 <button
                   onClick={handleLogout}
-                  className="text-gray-800 text-xl px-8 hover:bg-teal-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg w-1/2 sm:w-auto py-2.5 text-center dark:bg-[#5CE1E6]"
+                  className="text-white text-xl px-8 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg w-1/2 sm:w-auto py-2.5 text-center bg-[#eda363]"
                 >
                   Logout
                 </button>
               ) : (
                 <button
                   onClick={handleLogin}
-                  className="text-gray-800 text-xl px-8 hover:bg-teal-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg w-1/2 sm:w-auto py-2.5 text-center dark:bg-[#5CE1E6]"
+                  className="text-white text-xl px-8 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg w-1/2 sm:w-auto py-2.5 text-center bg-[#eda363] "
                 >
                   Login
                 </button>

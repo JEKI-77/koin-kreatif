@@ -24,7 +24,7 @@
 }
 
 .active {
-  color: white;
+  color: #ff983f;
   font-weight: bold;
   padding-left: 3px;
   padding-right: 3px;
@@ -39,7 +39,7 @@
   flex-direction: column;
   align-items: center;
   /* justify-content: center; */
-  /* background-color: rgba(0, 0, 0, 0.1); */
+  background-color: #252841;
 }
 
 .app-container {
@@ -48,7 +48,6 @@
   width: 100%;
   max-width: 100%;
   padding: 0 20px;
-  overflow: auto;
   height: 70%;
 }
 
@@ -56,7 +55,7 @@
 @media screen and (min-width: 768px) {
   .app-container {
     height: 80%;
-    width: 1000px; /* Change width to 100% for larger screens */
+    width: 1500px; /* Change width to 100% for larger screens */
     margin-top: 2rem;
   }
 }
