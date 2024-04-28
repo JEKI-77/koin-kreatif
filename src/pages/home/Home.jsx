@@ -18,7 +18,6 @@ const Home = () => {
   // const { params } = useParams();
   const [stateName, setStateName] = useState("");
   const [data, setData] = useState(null);
-  console.log("data home", data);
   const cookies = new Cookies();
   const token = cookies.get("token");
 
@@ -40,15 +39,8 @@ const Home = () => {
     <div className="w-[90%] md:w-[40%]">
       <div className="mt-4">Hi {stateName}</div>
 
-      <div className=" mt-4 flex justify-center items-center">
-        {/* <ReactDatePicker
-          selected={startDate}
-          onChange={(date) => setStartDate(date)}
-          scrollableYearDropdown // membuat dropdown tahun menjadi scrollable
-        /> */}
-      </div>
+      <div className=" mt-4 flex justify-center items-center"></div>
       {/* <Card /> */}
-
       <div
         className="
       no-scrollbar overflow-y-auto h-[25em] md:h-[30em]"
