@@ -2,6 +2,8 @@ import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Signup } from "../../../utils/auth";
 import Swal from "sweetalert2";
+import { IoEyeSharp } from "react-icons/io5";
+import { BsEyeSlash } from "react-icons/bs";
 
 const Register = () => {
   const navigateTo = useNavigate();
@@ -10,6 +12,7 @@ const Register = () => {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const inputRefs = {
     userName: useRef(null),
@@ -44,7 +47,9 @@ const Register = () => {
         title: "Registrasi berhasil",
         icon: "success",
       });
-      navigateTo("/login");
+      setTimeout(() => {
+        navigateTo("/login");
+      }, 2000);
     } catch (error) {
       console.log("Error:", error);
       Swal.fire({
@@ -104,16 +109,24 @@ const Register = () => {
               >
                 Password
               </label>
-              <input
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                type="password"
-                id="password"
-                placeholder="*****"
-                required
-                autoComplete="current-password"
-                className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              />
+              <div className="relative flex">
+                <input
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  placeholder="*****"
+                  required
+                  autoComplete="current-password"
+                  className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+                <span
+                  className="cursor-pointer p-2 mt-1 text-xl  absolute right-0 "
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <IoEyeSharp /> : <BsEyeSlash />}
+                </span>
+              </div>
             </div>
 
             <div className=" flex justify-center items-center">

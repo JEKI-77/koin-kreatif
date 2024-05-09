@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { SignIn } from "../../../utils/auth";
 import Cookies from "universal-cookie";
 import Swal from "sweetalert2";
+import { BsEyeSlash } from "react-icons/bs";
+import { IoEyeSharp } from "react-icons/io5";
 // import Alert from "../../../components/Atoms/Alert";
 
 const Login = () => {
@@ -14,6 +16,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLogin, setIsLogin] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     const token = cookies.get("token");
@@ -109,16 +112,24 @@ const Login = () => {
               >
                 Password
               </label>
-              <input
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                type="password"
-                id="password"
-                placeholder="*****"
-                autoComplete="current-password"
-                className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required
-              />
+              <div className="flex relative">
+                <input
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  placeholder="*****"
+                  autoComplete="current-password"
+                  className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  required
+                />
+                <span
+                  className="cursor-pointer p-2 mt-1 text-xl  absolute right-0 "
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <IoEyeSharp /> : <BsEyeSlash />}
+                </span>
+              </div>
             </div>
 
             <div className="flex justify-center items-center mb-4 ">
