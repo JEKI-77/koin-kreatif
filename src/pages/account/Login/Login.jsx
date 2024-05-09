@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { SignIn } from "../../../utils/auth";
 import Cookies from "universal-cookie";
+import Swal from "sweetalert2";
+// import Alert from "../../../components/Atoms/Alert";
 
 const Login = () => {
   const navigateTo = useNavigate();
@@ -29,25 +31,36 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     if (email && password) {
-      // const getToken = cookies.get("token");
-      // console.log(getToken);
       try {
         const response = await SignIn(data);
-        // console.log(response);
         const setToken = response.data.data.token;
         const setUserName = response.data.data.userName;
         cookies.set("token", setToken);
         cookies.set("userName", setUserName);
         setIsLogin(true); // Set status login ke true
         navigateTo("/");
-        alert("Login berhasil");
+        Swal.fire({
+          showConfirmButton: false,
+          timer: 1500,
+          title: "Login Success",
+          icon: "success",
+        });
       } catch (error) {
         setIsLogin(false); // Set status login ke false
         console.log("Error:", error);
-        alert("Gagal melakukan login. Silakan coba lagi.");
+        Swal.fire({
+          title: "Email atau passwond salah silahkan coba lagi !",
+          icon: "warning",
+          confirmButtonColor: "#3085d6",
+        });
       }
     } else {
-      alert("Kolom input masih kosong");
+      Swal.fire({
+        title: "Email atau password masih kosong !",
+        icon: "warning",
+        confirmButtonColor: "#3085d6",
+      });
+      console.log("Kolom input masih kosong");
     }
   };
 
@@ -55,8 +68,13 @@ const Login = () => {
     e.preventDefault();
     cookies.remove("token");
     cookies.remove("userName");
-    alert("logout success");
     setIsLogin(false); // Set status login ke false
+    Swal.fire({
+      showConfirmButton: false,
+      timer: 1500,
+      title: "Logout Success",
+      icon: "success",
+    });
   };
 
   return (
@@ -76,6 +94,7 @@ const Login = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 id="email"
+                autoComplete="email"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="name@gmail.com"
                 required
@@ -100,7 +119,7 @@ const Login = () => {
               />
             </div>
 
-            <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center mb-4 ">
               {isLogin ? (
                 <button
                   onClick={handleLogout}

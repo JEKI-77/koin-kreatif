@@ -9,7 +9,6 @@ import Cookies from "universal-cookie";
 
 const Card = () => {
   const [data, setData] = useState("");
-  console.log("data", data);
   const cookies = new Cookies();
   const token = cookies.get("token");
 

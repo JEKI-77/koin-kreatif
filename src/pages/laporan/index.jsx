@@ -20,7 +20,6 @@ const Laporan = () => {
   const [endDate, setEndDate] = useState("");
   const [category, setCategory] = useState("");
   const [status, setStatus] = useState("");
-  console.log("status", status);
   const [categoryData, setCategoryData] = useState([]);
 
   const cookies = new Cookies();
@@ -37,7 +36,7 @@ const Laporan = () => {
         category,
         status
       );
-      setData(response.data.transactions);
+      setData(response.data.data);
     } catch (error) {
       console.log(error);
     }
