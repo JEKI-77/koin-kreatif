@@ -12,7 +12,7 @@ const Header = () => {
   // const { param = "laporan" } = useParams();
   // const [show, setShow] = useState(false);
   return (
-    <nav className="  bg-[#2c628e] flex justify-center items-center h-20 ">
+    <nav className="  bg-[#204f75] flex justify-center items-center h-20 ">
       <div className="flex justify-between items-center  w-[80%] jitems-center ">
         {/* icon */}
         <div className="">

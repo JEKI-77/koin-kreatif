@@ -19,14 +19,14 @@ import { useNavigate } from "react-router-dom";
 const Home = () => {
   const navigateTo = useNavigate();
   const [stateName, setStateName] = useState("");
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const cookies = new Cookies();
   const token = cookies.get("token");
 
   const fetchdata = async () => {
     try {
       const response = await GetAllTransaction(token);
-      setData(response.data.transactions);
+      setData(response.data.data);
     } catch (error) {
       console.log(error);
     }

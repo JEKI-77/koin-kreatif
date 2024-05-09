@@ -104,14 +104,14 @@ const Login = () => {
               {isLogin ? (
                 <button
                   onClick={handleLogout}
-                  className="text-white text-xl px-8 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg w-1/2 sm:w-auto py-2.5 text-center bg-[#eda363]"
+                  className="text-white text-xl px-8 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg w-1/2 sm:w-auto py-2.5 text-center bg-[#ea954a]"
                 >
                   Logout
                 </button>
               ) : (
                 <button
                   onClick={handleLogin}
-                  className="text-white text-xl px-8 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg w-1/2 sm:w-auto py-2.5 text-center bg-[#eda363] "
+                  className="text-white text-xl px-8 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg w-1/2 sm:w-auto py-2.5 text-center bg-[#ea954a] "
                 >
                   Login
                 </button>

@@ -16,7 +16,7 @@ const Card = () => {
   const fetchdata = async () => {
     try {
       const response = await GetAllTransaction(token);
-      setData(response.data.transactions);
+      setData(response.data.data);
     } catch (error) {
       console.log(error);
 
@@ -66,7 +66,7 @@ const Card = () => {
 
   return (
     <>
-      <div className="bg-[#eda363]  h-20 shadow-md  items-center flex justify-around rounded-md px-4 ">
+      <div className="bg-[#e29755]  h-20 shadow-md  items-center flex justify-around rounded-md px-4 ">
         <div className="flex gap-4">
           <div className="flex justify-center items-center">
             <span className="text-green-600 text-2xl">
