@@ -7,6 +7,7 @@ import Loading from "../../components/Atoms/Loading";
 import { GetAllCategory } from "../../utils/category";
 import { useEffect } from "react";
 import Cookies from "universal-cookie";
+import { MdAdd } from "react-icons/md";
 
 const AddTransaction = () => {
   // State untuk mengontrol visibilitas modal
@@ -91,7 +92,8 @@ const AddTransaction = () => {
         type="button"
         style={{ width: "50px", height: "50px" }} // Added inline style for width and height
       >
-        <span className="text-3xl">+</span> {/* Increased font size */}
+        <MdAdd />
+        {/* <span className="text-3xl">+</span> */}
       </button>
 
       {/* Main modal */}
