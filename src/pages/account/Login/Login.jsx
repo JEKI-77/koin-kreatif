@@ -38,13 +38,15 @@ const Login = () => {
         cookies.set("token", setToken);
         cookies.set("userName", setUserName);
         setIsLogin(true); // Set status login ke true
-        navigateTo("/");
         Swal.fire({
           showConfirmButton: false,
           timer: 1500,
           title: "Login Success",
           icon: "success",
         });
+        setTimeout(() => {
+          navigateTo("/");
+        }, 2000);
       } catch (error) {
         setIsLogin(false); // Set status login ke false
         console.log("Error:", error);

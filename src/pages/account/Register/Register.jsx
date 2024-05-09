@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Signup } from "../../../utils/auth";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const navigateTo = useNavigate();
@@ -37,11 +38,21 @@ const Register = () => {
     try {
       const response = await Signup(data);
       console.log(response);
+      Swal.fire({
+        showConfirmButton: false,
+        timer: 1500,
+        title: "Registrasi berhasil",
+        icon: "success",
+      });
       navigateTo("/login");
-      alert("Registrasi berhasil");
     } catch (error) {
       console.log("Error:", error);
-      alert("Gagal melakukan registrasi. Silakan coba lagi.");
+      Swal.fire({
+        title: "Registrasi gagal ! ",
+        text: "Silahkan coba lagi ",
+        icon: "warning",
+        confirmButtonColor: "#3085d6",
+      });
     }
   };
 
