@@ -139,7 +139,7 @@ const AddTransaction = () => {
                 {/* Modal body */}
                 <form className="p-4 md:p-5">
                   <div className="grid gap-4 mb-4 grid-cols-2">
-                    <div className=" flex gap-4 items-start w-[50%]">
+                    <div className=" flex gap-4 items-start w-[50%] text-black">
                       <span className="text-3xl">
                         <Toggle onChange={toggleHandler} checked={isChecked} />
                       </span>
