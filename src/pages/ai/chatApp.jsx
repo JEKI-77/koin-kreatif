@@ -80,7 +80,7 @@ const ChatApp = () => {
     try {
       setLoading(true);
       setAnswer("");
-      const response = await fetch("http://localhost:4000/openai", {
+      const response = await fetch("https://api-koin-kreatif.cloud/openai", {
         method: "post",
         headers: {
           Accept: "application/json, text/plain, */*", // indicates which files we are able to understand
