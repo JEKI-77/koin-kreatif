@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import axios from "axios";
-// const url = "https://api-koin-kreatif.cloud";
-const url = "http://localhost:4000";
+const url = "https://api-koin-kreatif.cloud";
+// const url = "http://localhost:4000";
 
 export const PostCategory = (data, token) => {
   try {

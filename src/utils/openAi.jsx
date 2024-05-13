@@ -1,5 +1,6 @@
 import axios from "axios";
-const url = "http://localhost:4000";
+// const url = "http://localhost:4000";
+const url = "https://api-koin-kreatif.cloud";
 
 export const PostOpenAi = async (data) => {
   try {
